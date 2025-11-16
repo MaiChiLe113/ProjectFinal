@@ -14,14 +14,14 @@
         <div class="col-12 col-md-6">
           <div class="competition-page__view-toggle">
             <button
-              @click="viewMode = 'card'"
+              @click="viewMode='card'"
               :class="['btn', 'competition-page__view-btn', { 'active': viewMode === 'card' }]"
               title="Card View"
             >
               <i class="bi bi-grid-3x3-gap-fill"></i> Card View
             </button>
             <button
-              @click="viewMode = 'line'"
+              @click="viewMode='line'"
               :class="['btn', 'competition-page__view-btn', { 'active': viewMode === 'line' }]"
               title="Line View"
             >
@@ -427,24 +427,24 @@
                     <span class="badge bg-primary">{{ competition.category }}</span>
                   </td>
                   <td class="competition-page__table-organizer">
-                    {{ competition.organizer.name }}
+                    {{ competition.organizer?.name || competition.organizer_name || 'Unknown' }}
                   </td>
                   <td class="competition-page__table-location">
-                    <i :class="getLocationIcon(competition.location.type)" class="me-1"></i>
-                    {{ competition.participants }}
+                    <i :class="getLocationIcon(competition.location?.type || competition.location_type)" class="me-1"></i>
+                    {{ competition.participants || competition.location || 'All campuses' }}
                   </td>
                   <td class="competition-page__table-date">
-                    {{ formatDate(competition.dates.start) }}
+                    {{ formatDate(competition.dates?.start || competition.start_date) }}
                   </td>
                   <td class="competition-page__table-status">
-                    <span 
-                      class="badge" 
+                    <span
+                      class="badge"
                       :class="getStatusClass(competition.status)">
                       {{ competition.status }}
                     </span>
                   </td>
                   <td class="competition-page__table-participants">
-                    {{ competition.capacity.current }}/{{ competition.capacity.max }}
+                    {{ competition.capacity?.current ?? competition.current_participants ?? 0 }}/{{ competition.capacity?.max ?? competition.max_participants ?? 100 }}
                   </td>
                 </tr>
               </tbody>
@@ -544,15 +544,18 @@ export default {
       }
 
       if (this.filters.locations.length > 0) {
-        items = items.filter(item => 
-          this.filters.locations.includes(item.participants)
+        items = items.filter(item =>
+          this.filters.locations.includes(item.participants) ||
+          this.filters.locations.includes(item.location) ||
+          this.filters.locations.includes(item.location_type)
         )
       }
 
       if (this.filters.organizerTypes.length > 0) {
-        items = items.filter(item => 
-          this.filters.organizerTypes.includes(item.organizer.type)
-        )
+        items = items.filter(item => {
+          const orgType = item.organizer?.type || item.organizer_type
+          return this.filters.organizerTypes.includes(orgType)
+        })
       }
 
       return items
@@ -561,6 +564,7 @@ export default {
       const start = (this.currentPage - 1) * this.perPage
       const end = start + this.perPage
       return this.filteredCompetitions.slice(start, end)
+      // return this.competitions;
     },
     totalPages() {
       return Math.ceil(this.filteredCompetitions.length / this.perPage)
@@ -601,12 +605,24 @@ export default {
 
         const data = await response.json()
 
-        // API returns an array of competitions directly
-        this.competitions = Array.isArray(data) ? data : []
+        // Debug: Log the response structure
+        console.log('API Response:', data)
+
+        // API returns an object with competitions array
+        if (data.competitions && Array.isArray(data.competitions)) {
+          this.competitions = data.competitions
+          console.log('First competition structure:', this.competitions[0])
+        } else if (Array.isArray(data)) {
+          // Fallback: handle if API returns array directly
+          this.competitions = data
+          console.log('First competition structure:', this.competitions[0])
+        } else {
+          this.competitions = []
+        }
 
         // Extract unique categories and locations
-        this.categories = [...new Set(this.competitions.map(item => item.category))].sort()
-        this.locations = [...new Set(this.competitions.map(item => item.participants))].sort()
+        this.categories = [...new Set(this.competitions.map(item => item.category))].filter(Boolean).sort()
+        this.locations = [...new Set(this.competitions.map(item => item.participants || item.location))].filter(Boolean).sort()
       } catch (error) {
         console.error('Error loading competitions:', error)
         this.error = 'Failed to load competitions. Please try again later.'

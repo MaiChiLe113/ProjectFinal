@@ -43,7 +43,7 @@ const routes = [
 //   {path: '/mark', component: Mark},
   {path: '/competitions/:id/projects', name: 'ProjectsInACompetition', component: Projects},
   {path: '/vote', name: 'AllProjects', component: Vote},
-  {path: '/competitions/:id/projects/:id', name: 'ProjectDetail', component: ProjectDetail},
+  {path: '/competitions/:id/projects/:ProjectId', name: 'ProjectDetail', component: ProjectDetail},
   {path: '/signin', name: 'SignIn', component: SignIn},
   {path: '/signup', name: 'SignUp', component: SignUp},
   {path: '/dashboard', name: 'DashBoard', component: DashBoard},

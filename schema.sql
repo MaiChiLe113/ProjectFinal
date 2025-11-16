@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2025 at 11:28 AM
+-- Generation Time: Nov 16, 2025 at 12:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -163,7 +163,10 @@ INSERT INTO `competitions` (`id`, `title`, `description`, `category`, `organizer
 (17, 'Podcast Creation Workshop', 'Learn to create and produce professional podcasts', 'Media', 3, 'Media & Communication Faculty', 'media@swinburne.edu.au', 'staff', '2025-10-11', '2025-12-18', '2025-12-19', '2025-12-08', 'Hanoi campus', 30, 24, 0, 'upcoming', 1, 0, 1, 2, 'offline', 'Media Studio, Hanoi', '', 'Best Podcast: Audio Equipment Bundle, Runner-up: 100 GOLD, All: Certificates', 'Create 10-15 minute episode. Any topic (appropriate). Team or solo. Professional editing required.', 'podcast@swinburne.edu.vn', 'https://i.pinimg.com/736x/36/13/67/361367ef0a5bad17922f702dd467e96a.jpg', 'https://i.pinimg.com/1200x/f4/cf/e5/f4cfe5361158ac92a94e4031b21cca3b.jpg', 156, 78, 24, 0.00, '2025-11-16 04:03:01', '2025-11-16 04:03:01'),
 (18, 'Cybersecurity CTF', 'Capture the flag competition for aspiring security professionals', 'Technology', 10, 'InfoSec Club', 'infosec@swinburne.edu.vn', 'clubs', '2025-10-02', '2025-12-21', '2025-12-22', '2025-12-15', 'All campuses', 150, 98, 3, 'upcoming', 1, 0, 1, 3, 'online', 'CTF Platform', 'https://ctf.swinburne.edu', '1st: 200 GOLD + Security Certifications, 2nd: 120 GOLD, 3rd: 60 GOLD', 'Ethical hacking only. No DoS attacks. Document your approach. Learn and have fun.', 'infosec@swinburne.edu.vn', 'https://i.pinimg.com/736x/a7/16/18/a7161851115fea0f1c7ef4746c90bd02.jpg', 'https://i.pinimg.com/736x/fe/ca/2e/feca2eecb78773f7bb69b0734564d357.jpg', 289, 145, 98, 0.00, '2025-11-16 04:03:01', '2025-11-16 04:03:01'),
 (19, 'Creative Writing Contest', 'Express yourself through short stories and poetry', 'Community', 23, 'Emily Pham', 'emily.pham@student.swin.edu.vn', 'individual', '2025-10-09', '2026-01-05', '2026-01-20', '2025-12-28', 'All campuses', 100, 56, 0, 'upcoming', 1, 0, 0, 1, 'online', 'Online Submission Portal', 'https://writing.swinburne.edu', '1st: 800k VND + Publication, 2nd: 500k VND, 3rd: 300k VND + Feedback Session', 'Max 3000 words for stories, 50 lines for poetry. Original work. English or Vietnamese.', 'emily.pham@student.swin.edu.vn', 'https://i.pinimg.com/1200x/a1/58/be/a158bedb7cde3727aba96a605b1cc5cc.jpg', 'https://i.pinimg.com/736x/f8/42/9a/f8429a0e5783b6365d8f4270fa01252a.jpg', 223, 102, 56, 0.00, '2025-11-16 04:03:01', '2025-11-16 04:03:01'),
-(20, 'Investment Challenge', 'Virtual stock trading competition with real market data', 'Business', 11, 'Finance Club', 'finance@swinburne.edu.vn', 'clubs', '2025-09-27', '2026-01-06', '2026-03-06', '2025-12-30', 'All campuses', 250, 189, 10, 'upcoming', 1, 0, 1, 2, 'online', 'Trading Simulator', 'https://invest.swinburne.edu', '1st: $1000 + Bloomberg Terminal Access, 2nd: $600, 3rd: $300', 'Virtual $100K portfolio. Real-time data. Weekly reports required. Ethical trading only.', 'finance@swinburne.edu.vn', 'https://i.pinimg.com/736x/4a/89/60/4a89609b9fa86e607ddb5eb94c8143b5.jpg', 'https://i.pinimg.com/736x/fe/ca/2e/feca2eecb78773f7bb69b0734564d357.jpg', 445, 223, 189, 0.00, '2025-11-16 04:03:01', '2025-11-16 04:03:01');
+(20, 'Investment Challenge', 'Virtual stock trading competition with real market data', 'Business', 11, 'Finance Club', 'finance@swinburne.edu.vn', 'clubs', '2025-09-27', '2026-01-06', '2026-03-06', '2025-12-30', 'All campuses', 250, 189, 10, 'upcoming', 1, 0, 1, 2, 'online', 'Trading Simulator', 'https://invest.swinburne.edu', '1st: $1000 + Bloomberg Terminal Access, 2nd: $600, 3rd: $300', 'Virtual $100K portfolio. Real-time data. Weekly reports required. Ethical trading only.', 'finance@swinburne.edu.vn', 'https://i.pinimg.com/736x/4a/89/60/4a89609b9fa86e607ddb5eb94c8143b5.jpg', 'https://i.pinimg.com/736x/fe/ca/2e/feca2eecb78773f7bb69b0734564d357.jpg', 445, 223, 189, 0.00, '2025-11-16 04:03:01', '2025-11-16 04:03:01'),
+(21, 'Future of Fintech Challenge', 'Design and prototype a decentralized finance application in a 3-week sprint.', 'Technology', 25, 'Alex Chen', 'alex.chen@swinburne.edu.au', 'staff', '2025-09-01', '2025-11-10', '2025-12-01', '2025-11-05', 'All campuses', 500, 150, 0, 'ongoing', 0, 0, 1, 4, 'online', NULL, NULL, '1st: $3000, Mentorship, 2nd: $1500', NULL, 'fintech@swinburne.edu.au', NULL, NULL, 850, 0, 150, 0.00, '2025-11-16 11:06:08', '2025-11-16 11:06:08'),
+(22, 'Swinburne Annual Chess Tournament', 'The yearly battle of minds.', 'Community', 11, 'Finance Club', 'finance@swinburne.edu.vn', 'clubs', '2025-08-01', '2025-10-05', '2025-10-05', '2025-09-30', 'Hanoi campus', 50, 48, 0, 'completed', 0, 0, 0, 1, 'offline', 'Library Hall, Hanoi', NULL, '1st: 200 GOLD, Trophy, 2nd: 100 GOLD', NULL, 'chess@swinburne.edu.vn', NULL, NULL, 450, 0, 48, 0.85, '2025-11-16 11:06:08', '2025-11-16 11:06:08'),
+(23, 'Green Tech Design Sprint', 'A challenge to design an energy-efficient device.', 'Events', 25, 'Alex Chen', 'alex.chen@swinburne.edu.au', 'staff', '2025-11-01', '2026-02-01', '2026-02-05', '2026-01-20', 'All campuses', 300, 5, 0, 'upcoming', 1, 0, 1, 3, 'hybrid', 'Innovation Lab + Zoom', NULL, '1st: $1000 + Manufacturing Support', NULL, 'greentech@swinburne.edu.au', NULL, NULL, 20, 0, 5, 0.00, '2025-11-16 11:06:08', '2025-11-16 11:06:08');
 
 -- --------------------------------------------------------
 
@@ -207,7 +210,10 @@ CREATE TABLE `competition_participants` (
 --
 
 INSERT INTO `competition_participants` (`id`, `competition_id`, `user_id`, `joined_at`, `status`, `team_name`) VALUES
-(1, 1, 4, '2025-11-16 04:03:01', 'approved', NULL);
+(1, 1, 4, '2025-11-16 04:03:01', 'approved', 'Meme'),
+(2, 21, 26, '2025-11-10 03:00:00', 'approved', 'Finnovators'),
+(3, 21, 27, '2025-11-10 03:15:00', 'approved', 'Finnovators'),
+(4, 23, 27, '2025-11-16 11:00:00', 'pending', 'Green Dream Team');
 
 -- --------------------------------------------------------
 
@@ -334,7 +340,8 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `competition_id`, `project_name`, `elevator_pitch`, `about_project`, `built_with`, `video_demo_link`, `thumbnail`, `uploader_id`, `uploader_name`, `uploader_email`, `uploader_avatar`, `submitted_at`, `updated_at`, `status`, `votes`) VALUES
-(1, 1, 'EcoTrack AI', 'AI-powered carbon footprint tracker that helps individuals and businesses reduce their environmental impact through personalized recommendations.', '### Inspiration\n\nClimate change is one of the biggest challenges of our generation. We wanted to create a tool that makes it easy for everyone to understand and reduce their carbon footprint.\n\n### What it does\n\nEcoTrack AI uses machine learning to analyze daily activities, transportation choices, and consumption patterns to calculate accurate carbon emissions. It then provides personalized, actionable recommendations to reduce environmental impact.\n\n### How we built it\n\nWe used React Native for the mobile app, Python with TensorFlow for the ML models, and Firebase for backend services. The carbon calculation algorithms are based on EPA and IPCC data.\n\n### Challenges we faced\n\nGetting accurate carbon emission data across different countries was challenging. We also struggled with making the ML model work efficiently on mobile devices.\n\n### What we learned\n\nWe learned about carbon accounting, optimization techniques for mobile ML, and the importance of user-friendly design for environmental apps.', 'React Native, Python, TensorFlow, Firebase, Node.js, EPA Carbon API', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', 'https://i.pinimg.com/736x/4a/89/60/4a89609b9fa86e607ddb5eb94c8143b5.jpg', 4, 'Nguyen Minh Tuan', 'tuan.nguyen@student.swin.edu.vn', 'https://i.pravatar.cc/150?img=1', '2026-02-15 07:30:00', '2026-03-01 03:15:00', 'approved', 245);
+(1, 1, 'EcoTrack AI', 'AI-powered carbon footprint tracker that helps individuals and businesses reduce their environmental impact through personalized recommendations.', '### Inspiration\n\nClimate change is one of the biggest challenges of our generation. We wanted to create a tool that makes it easy for everyone to understand and reduce their carbon footprint.\n\n### What it does\n\nEcoTrack AI uses machine learning to analyze daily activities, transportation choices, and consumption patterns to calculate accurate carbon emissions. It then provides personalized, actionable recommendations to reduce environmental impact.\n\n### How we built it\n\nWe used React Native for the mobile app, Python with TensorFlow for the ML models, and Firebase for backend services. The carbon calculation algorithms are based on EPA and IPCC data.\n\n### Challenges we faced\n\nGetting accurate carbon emission data across different countries was challenging. We also struggled with making the ML model work efficiently on mobile devices.\n\n### What we learned\n\nWe learned about carbon accounting, optimization techniques for mobile ML, and the importance of user-friendly design for environmental apps.', 'React Native, Python, TensorFlow, Firebase, Node.js, EPA Carbon API', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', 'https://i.pinimg.com/736x/4a/89/60/4a89609b9fa86e607ddb5eb94c8143b5.jpg', 4, 'Nguyen Minh Tuan', 'tuan.nguyen@student.swin.edu.vn', 'https://i.pravatar.cc/150?img=1', '2026-02-15 07:30:00', '2026-03-01 03:15:00', 'approved', 245),
+(2, 21, 'SwiftPay: Decentralized P2P Lending', 'A smart contract-based platform for transparent, instant, and borderless peer-to-peer lending.', 'SwiftPay aims to disrupt traditional finance by using blockchain to eliminate intermediaries, reduce fees, and offer better rates. The system features an on-chain credit score based on repayment history. The project was built over 3 weeks during the Fintech Challenge.', 'Solidity, Ethereum, React.js, Web3.js, IPFS', 'https://www.youtube.com/watch?v=SWIFTDEMO', NULL, 26, 'Jessica Lee', 'jessica.lee@student.swin.edu.vn', 'https://i.pravatar.cc/150?img=26', '2025-11-25 07:00:00', '2025-11-16 11:06:30', 'approved', 42);
 
 -- --------------------------------------------------------
 
@@ -358,7 +365,9 @@ CREATE TABLE `project_comments` (
 --
 
 INSERT INTO `project_comments` (`id`, `project_id`, `user_id`, `user_name`, `user_avatar`, `comment`, `likes`, `timestamp`) VALUES
-(1, 1, 5, 'Sarah Chen', 'https://i.pravatar.cc/150?img=5', 'This is amazing! The AI recommendations are really practical and easy to follow. Great work!', 12, '2026-02-16 02:20:00');
+(1, 1, 5, 'Sarah Chen', 'https://i.pravatar.cc/150?img=5', 'This is amazing! The AI recommendations are really practical and easy to follow. Great work!', 12, '2026-02-16 02:20:00'),
+(2, 2, 25, 'Alex Chen', NULL, 'Great concept! Have you considered the regulatory challenges in different jurisdictions?', 5, '2025-11-16 11:06:57'),
+(3, 2, 1, 'Computer Science Faculty', NULL, 'The UI is very clean and intuitive. Excellent work on the smart contract integration.', 12, '2025-11-16 11:06:57');
 
 -- --------------------------------------------------------
 
@@ -412,9 +421,17 @@ INSERT INTO `project_links` (`id`, `project_id`, `url`, `display_order`) VALUES
 CREATE TABLE `project_votes` (
   `id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `voted_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `project_votes`
+--
+
+INSERT INTO `project_votes` (`id`, `project_id`, `user_id`) VALUES
+(4, 2, 25),
+(5, 2, 26),
+(6, 2, 27);
 
 -- --------------------------------------------------------
 
@@ -438,7 +455,9 @@ CREATE TABLE `team_members` (
 INSERT INTO `team_members` (`id`, `project_id`, `user_id`, `name`, `role`, `display_order`) VALUES
 (1, 1, 4, 'Nguyen Minh Tuan', 'Full-stack Developer', 1),
 (2, 1, NULL, 'Tran Quynh Anh', 'ML Engineer', 2),
-(3, 1, NULL, 'Le Hoang Nam', 'UI/UX Designer', 3);
+(3, 1, NULL, 'Le Hoang Nam', 'UI/UX Designer', 3),
+(4, 2, 26, 'Jessica Lee', 'Project Lead / Frontend', 1),
+(5, 2, 27, 'David Kim', 'Blockchain Developer', 2);
 
 -- --------------------------------------------------------
 
@@ -470,7 +489,10 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `phone`, `passwor
 (3, 'Computer Science', 'Faculty', 'tech@swinburne.edu.au', NULL, 'Pass123!', NULL, 'staff', 'https://i.pravatar.cc/150?img=10', '2025-11-16 04:03:01', '2025-11-16 04:11:16'),
 (4, 'Nguyen Minh', 'Tuan', 'tuan.nguyen@student.swin.edu.vn', NULL, 'Pass123!', NULL, 'student', 'https://i.pravatar.cc/150?img=3', '2025-11-16 04:03:01', '2025-11-16 04:11:17'),
 (5, 'Sarah', 'Chen', 'sarah.chen@student.swin.edu.vn', NULL, 'Pass123!', NULL, 'student', 'https://i.pravatar.cc/150?img=5', '2025-11-16 04:03:01', '2025-11-16 04:11:21'),
-(6, 'Chi', 'May', 'maichiviolet@gmail.com', '08249678682', 'Pass123!', 'Female', 'student', NULL, '2025-11-16 07:46:39', '2025-11-16 07:46:39');
+(6, 'Chi', 'May', 'maichiviolet@gmail.com', '08249678682', 'Pass123!', 'Female', 'student', NULL, '2025-11-16 07:46:39', '2025-11-16 07:46:39'),
+(25, 'Alex', 'Chen', 'alex.chen@swinburne.edu.au', '0912345670', '$2a$10$HASHEDPASSWORD', 'Male', 'staff', 'https://i.pravatar.cc/150?img=25', '2025-11-16 11:05:57', '2025-11-16 11:05:57'),
+(26, 'Jessica', 'Lee', 'jessica.lee@student.swin.edu.vn', '0912345671', '$2a$10$HASHEDPASSWORD', 'Female', 'student', 'https://i.pravatar.cc/150?img=26', '2025-11-16 11:05:57', '2025-11-16 11:05:57'),
+(27, 'David', 'Kim', 'david.kim@student.swin.edu.vn', '0912345672', '$2a$10$HASHEDPASSWORD', 'Male', 'student', 'https://i.pravatar.cc/150?img=27', '2025-11-16 11:05:57', '2025-11-16 11:05:57');
 
 -- --------------------------------------------------------
 
@@ -685,13 +707,13 @@ ALTER TABLE `competition_gallery`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `project_comments`
 --
 ALTER TABLE `project_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `project_images`
@@ -709,19 +731,19 @@ ALTER TABLE `project_links`
 -- AUTO_INCREMENT for table `project_votes`
 --
 ALTER TABLE `project_votes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `team_members`
 --
 ALTER TABLE `team_members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables
