@@ -8,23 +8,50 @@ ComSwin is a Vue 3 + Vite web application for a competition/event management pla
 
 ## Development Commands
 
-### Start Development Server
+### Frontend Development
+
+**Start Development Server**
 ```bash
 npm run dev
 ```
 Starts Vite dev server with hot-reload at http://localhost:5173 (default)
 
-### Build for Production
+**Build for Production**
 ```bash
 npm run build
 ```
 Builds optimized production bundle to `dist/` directory
 
-### Preview Production Build
+**Preview Production Build**
 ```bash
 npm run preview
 ```
 Preview the production build locally before deployment
+
+### Backend Development
+
+**Install Backend Dependencies**
+```bash
+cd backend
+pip install -r requirements.txt
+```
+
+**Start Backend Server**
+```bash
+cd backend
+uvicorn main:app --reload
+```
+Starts FastAPI backend at http://localhost:8000 with auto-reload
+
+### Full Stack Development Workflow
+
+1. Start XAMPP and ensure MySQL is running
+2. Open two terminal windows:
+   - Terminal 1: `cd backend && uvicorn main:app --reload`
+   - Terminal 2: `npm run dev`
+3. Access frontend at http://localhost:5173
+4. Backend API available at http://localhost:8000
+5. API documentation at http://localhost:8000/docs (FastAPI auto-generated)
 
 ## Architecture
 
@@ -81,18 +108,42 @@ The app uses Vuex for state management with two modules:
 
 **Usage Pattern**: Components dispatch actions like `this.$store.dispatch('project/updateProjectName', name)` and access data via `this.$store.getters['project/getProjectData']`
 
+### API Service Layer
+
+**API Client**: `src/services/api.js` provides a centralized axios-based API client for backend communication
+
+**Structure**:
+- Base configuration with `http://localhost:8000/api` endpoint
+- Request interceptor for adding JWT auth tokens from localStorage
+- Response interceptor for global error handling (401 redirects to login, etc.)
+- Organized API modules:
+  - `authAPI` - login, register, logout
+  - `competitionsAPI` - getAll, getById, join, create
+  - `projectsAPI` - getAll, getById, create, vote, addComment
+  - `newsAPI` - getAll, getById
+  - `healthAPI` - health check
+
+**Usage Example**:
+```javascript
+import { competitionsAPI } from '@/services/api'
+
+// In component
+const competitions = await competitionsAPI.getAll({ limit: 10 })
+```
+
+**Note**: The Vuex auth module uses axios directly instead of this service layer. Consider migrating to use the centralized API service for consistency.
+
 ### Data Management
 
-- `competitions.json` - Competition data including organizer info, dates, participants, requirements, registration settings
-- `users.json` - User accounts with roles (student/staff) and plaintext passwords (dev only)
-- `projects.json` - Submitted projects with detailed information (name, pitch, about, built-with, links, images, uploader, votes)
+**Static JSON Files** (for development fallback):
+- `src/data/competitions.json` - Competition data including organizer info, dates, participants, requirements, registration settings
+- `src/data/users.json` - User accounts with roles (student/staff) and plaintext passwords (dev only)
+- `src/data/projects.json` - Submitted projects with detailed information (name, pitch, about, built-with, links, images, uploader, votes)
 
-**Note**: Currently using static JSON files imported directly into components. The Vuex modules reference API endpoints that should be provided by a backend server (typically running via XAMPP or similar):
-- Auth module expects: `POST /api/login` - accepts `{ email, password }` and returns user object
-- Project module expects: `POST /api/projects` - accepts FormData with project details
-- Project module expects: `GET /api/projects/:id` - returns project data by ID
-
-The frontend assumes these endpoints exist on the same origin or are configured via Vite proxy.
+**Backend Database**: Production data managed by FastAPI backend with MySQL database (XAMPP)
+- Database name: `swincom`
+- Default XAMPP credentials: user `root`, password empty
+- Connection configured in `backend/main.py`
 
 ### Routing Structure
 
@@ -157,9 +208,20 @@ Routes defined in `src/router/index.js`:
 
 ## Backend Integration
 
-The frontend is designed to work with a backend API. The Vite dev server is configured to proxy API requests to `http://localhost:8000` (configured in `vite.config.js`).
+### Technology Stack
 
-**Current Proxy Configuration** (`vite.config.js`):
+**Backend Framework**: FastAPI (Python)
+- Located in `backend/` directory
+- Main entry: `backend/main.py`
+- Database: MySQL via XAMPP
+- CORS enabled for frontend at `http://localhost:5173`
+
+**Frontend-Backend Communication**:
+- Vite dev server proxies `/api` requests to `http://localhost:8000`
+- Configured in `vite.config.js`
+- Centralized API client in `src/services/api.js`
+
+**Proxy Configuration** (`vite.config.js`):
 ```js
 server: {
   proxy: {
@@ -171,7 +233,33 @@ server: {
 }
 ```
 
-If your backend runs on a different port, update the `target` value in `vite.config.js`.
+If your backend runs on a different port, update the `target` value.
+
+### API Endpoints
+
+**Authentication** (`/api/auth/`):
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login user
+
+**Competitions** (`/api/competitions/`):
+- `GET /api/competitions` - Get all competitions (with filters)
+- `GET /api/competitions/{id}` - Get competition details
+- `POST /api/competitions/{id}/join` - Join a competition
+
+**Projects** (`/api/projects/`):
+- `GET /api/projects` - Get all projects (with filters)
+- `GET /api/projects/{id}` - Get project details
+- `POST /api/projects` - Create new project (multipart/form-data)
+- `POST /api/projects/{id}/vote` - Vote for a project
+- `POST /api/projects/{id}/comments` - Add comment to project
+
+**News** (`/api/news/`):
+- `GET /api/news` - Get all news (with filters)
+- `GET /api/news/{id}` - Get news item
+
+**Health Check**:
+- `GET /` - API status
+- `GET /api/health` - Database health check
 
 ### API Response Formats
 
@@ -182,12 +270,12 @@ The backend API returns data wrapped in objects rather than direct arrays:
 - Each competition has nested objects for `organizer`, `dates`, `capacity`, `registration`, `location`, `images`
 
 **Authentication:**
-- `POST /api/register` - Accepts `{ first_name, last_name, email, phone, password, gender, role }`, returns user object
-- `POST /api/login` - Accepts `{ email, password }`, returns user object with email, role, etc.
+- `POST /api/auth/register` - Accepts `{ first_name, last_name, email, phone, password, gender, role }`, returns user object
+- `POST /api/auth/login` - Accepts `{ email, password }`, returns user object with email, role, etc.
 
 **Projects:**
 - `POST /api/projects` - Accepts FormData with project details (name, pitch, thumbnail, images, etc.)
-- `GET /api/projects/:id` - Returns project data by ID
+- `GET /api/projects/{id}` - Returns project data by ID
 
 ### Data Structure Compatibility
 
@@ -200,13 +288,39 @@ This dual compatibility allows the frontend to work with static JSON files durin
 
 ## Important Notes
 
-- Currently uses static JSON files (`src/data/`) for development when backend is unavailable
-- Both auth and project modules are registered and functional in the Vuex store
-- SignIn/SignUp components are routed (`/signin`, `/signup`) and connected to the auth module
-- Stage2 directory suggests a phased development approach - indicates work in progress
-- Some routes are commented out in the router (MyCompetition, Join, Mark, MarkCompetition), indicating incomplete features
+### Development Environment
+
+- **Dual Data Sources**: App can work with static JSON files (`src/data/`) when backend is unavailable OR with FastAPI backend
+- **Database Setup**: Requires XAMPP with MySQL database named `swincom`, default credentials (user: `root`, password: empty)
+- **CORS**: Backend configured to accept requests from `http://localhost:5173` only
+- **Auth Storage**: Uses localStorage key `swincom_user` for session persistence, `auth_token` for JWT tokens
+
+### Code Organization
+
+- **Vuex Modules**: Both `auth` and `project` modules are registered and functional
+- **API Layers**: Two API approaches exist:
+  - Centralized: `src/services/api.js` (recommended)
+  - Direct axios: Used in `auth` module (consider migrating)
+- **Phased Development**: `Stage2/` directory indicates work-in-progress features
+- **Incomplete Routes**: Some routes commented out in router (`MyCompetition`, `Join`, `Mark`, `MarkCompetition`)
+
+### Component Patterns
+
+- **Options API**: All components use Vue 3 Options API (not Composition API)
+- **Defensive Rendering**: Components like `CompetitionCard.vue` include helper methods to handle both nested and flat data structures
+- **Bootstrap-first**: Use Bootstrap utility classes before writing custom CSS
 
 ## Troubleshooting
+
+### Backend Connection Issues
+
+If frontend cannot connect to backend:
+
+1. **Check backend is running** - Verify `uvicorn main:app --reload` is running in `backend/` directory
+2. **Verify MySQL is running** - Start XAMPP and ensure MySQL service is active
+3. **Check database exists** - Database `swincom` must exist in MySQL
+4. **Test health endpoint** - Visit `http://localhost:8000/api/health` directly
+5. **Check proxy configuration** - Ensure `vite.config.js` proxy target matches backend port (default: 8000)
 
 ### Cards/Components Not Displaying
 
@@ -216,6 +330,15 @@ If data from the backend API isn't displaying in components:
 2. **Verify response format** - The API should return `{ competitions: [...] }` not `[...]` directly
 3. **Check component helper methods** - Components like `CompetitionCard.vue` have defensive helper methods (e.g., `getImageUrl()`, `getStatus()`) that handle multiple field naming conventions
 4. **Add console.log** - Components already have debug logging in `loadCompetitions()` methods to inspect API responses
+
+### Authentication Issues
+
+If login/registration not working:
+
+1. **Check localStorage** - Verify `swincom_user` key exists after successful login
+2. **Verify API endpoints** - Auth module calls `/api/login` and `/api/register` (NOT `/api/auth/login`)
+3. **Check CORS** - Backend must allow `http://localhost:5173` origin
+4. **Inspect network tab** - Look for 401/403 errors indicating auth failures
 
 ### Content Security Policy Errors in Development
 
