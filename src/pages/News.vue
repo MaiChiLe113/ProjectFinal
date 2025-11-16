@@ -3,7 +3,9 @@
     <div class="container">
       <!-- Title and View Toggle -->
       <div class="row mb-4 align-items-center">
-        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary" bis_skin_checked="1"> <div class="col-md-6 p-lg-5 mx-auto my-5" bis_skin_checked="1"> <h1 class="display-3 fw-bold">Lateset SwinNews</h1> <h3 class="fw-normal text-muted mb-3">See updated news about winners, regulations,... abotu competition</h3> </div></div>
+        <div class="col-12 col-md-6">
+          <h1 class="news-page__title">Latest News</h1>
+        </div>
         <div class="col-12 col-md-6">
           <div class="news-page__view-toggle">
             <button
@@ -88,7 +90,10 @@
               <i class="bi bi-funnel-fill me-2"></i>Active Filters:
             </span>
             <div class="news-page__chip-container">
-              <div v-if="filters.title" class="news-page__chip">
+              <div
+                v-if="filters.title"
+                class="news-page__chip"
+              >
                 <span class="news-page__chip-type">Title:</span>
                 <span class="news-page__chip-value">{{ filters.title }}</span>
                 <button
@@ -99,7 +104,10 @@
                   <i class="bi bi-x"></i>
                 </button>
               </div>
-              <div v-if="filters.content" class="news-page__chip">
+              <div
+                v-if="filters.content"
+                class="news-page__chip"
+              >
                 <span class="news-page__chip-type">Content:</span>
                 <span class="news-page__chip-value">{{ filters.content }}</span>
                 <button
@@ -110,7 +118,10 @@
                   <i class="bi bi-x"></i>
                 </button>
               </div>
-              <div v-if="filters.date" class="news-page__chip">
+              <div
+                v-if="filters.date"
+                class="news-page__chip"
+              >
                 <span class="news-page__chip-type">Date:</span>
                 <span class="news-page__chip-value">{{ formatDate(filters.date) }}</span>
                 <button
@@ -121,7 +132,10 @@
                   <i class="bi bi-x"></i>
                 </button>
               </div>
-              <div v-if="filters.category" class="news-page__chip">
+              <div
+                v-if="filters.category"
+                class="news-page__chip"
+              >
                 <span class="news-page__chip-type">Category:</span>
                 <span class="news-page__chip-value">{{ filters.category }}</span>
                 <button
@@ -141,9 +155,9 @@
       <div class="row mb-3 align-items-center">
         <div class="col-12 col-md-6 mb-2 mb-md-0">
           <p class="news-page__count mb-0">
-            <em v-if="filteredItems.length === 0">No news found</em>
+            <em v-if="filteredItems.length === 0">No news items found</em>
             <span v-else>
-              Total: <strong>{{ filteredItems.length }}</strong> SwinNews
+              Total: <strong>{{ filteredItems.length }}</strong> items
               <span v-if="filteredItems.length !== newsItems.length">
                 (filtered from {{ newsItems.length }})
               </span>
@@ -152,46 +166,22 @@
         </div>
         <div class="col-12 col-md-6 text-md-end">
           <label class="news-page__items-per-page">
-            SwinNews per page:
-            <select v-model.number="perPage" class="form-select form-select-sm d-inline-block w-auto ms-2">
-              <option :value="6">6</option>
-              <option :value="10">10</option>
-              <option :value="20">20</option>
+            Items per page:
+            <select v-model="perPage" class="form-select form-select-sm d-inline-block w-auto ms-2">
+              <option value="6">6</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
             </select>
           </label>
         </div>
       </div>
 
-      <!-- Loading State -->
-      <div v-if="loading" class="row">
-        <div class="col-12 text-center py-5">
-          <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-          <p class="mt-3 text-muted">Loading news...</p>
-        </div>
-      </div>
-
-      <!-- Error State -->
-      <div v-else-if="error" class="row">
-        <div class="col-12">
-          <div class="alert alert-danger" role="alert">
-            <i class="bi bi-exclamation-circle-fill me-2"></i>
-            {{ error }}
-            <button @click="loadNews" class="btn btn-sm btn-outline-danger ms-3">
-              <i class="bi bi-arrow-clockwise me-1"></i>
-              Retry
-            </button>
-          </div>
-        </div>
-      </div>
-
       <!-- Card View -->
-      <div v-else-if="viewMode === 'card'" class="row">
+      <div v-if="viewMode === 'card'" class="row">
         <div v-if="paginatedItems.length === 0" class="col-12">
           <div class="news-page__no-results-card">
             <i class="bi bi-search"></i>
-            <p>No SwinNews found matching your search.</p>
+            <p>No news items found matching your search.</p>
           </div>
         </div>
         <div
@@ -204,7 +194,7 @@
       </div>
 
       <!-- Line View (Table) -->
-      <div v-else-if="viewMode === 'line'" class="row">
+      <div v-else class="row">
         <div class="col-12">
           <div class="table-responsive">
             <table class="table table-hover news-page__table">
@@ -219,7 +209,7 @@
               <tbody class="news-page__table-body">
                 <tr v-if="paginatedItems.length === 0">
                   <td colspan="4" class="text-center news-page__no-results">
-                    No SwinNews found matching your search.
+                    No news items found matching your search.
                   </td>
                 </tr>
                 <tr v-for="item in paginatedItems" :key="item.id" class="news-page__table-row">
@@ -227,7 +217,7 @@
                   <td class="news-page__table-title">{{ item.title }}</td>
                   <td class="news-page__table-content">{{ item.content }}</td>
                   <td class="news-page__table-category">
-                    <span class="badge news-page__badge bg-primary">{{ item.category }}</span>
+                    <span class="badge news-page__badge">{{ item.category }}</span>
                   </td>
                 </tr>
               </tbody>
@@ -284,10 +274,8 @@ export default {
       },
       currentPage: 1,
       perPage: 6,
-      viewMode: 'card',
-      categories: [],
-      loading: false,
-      error: null
+      viewMode: 'card', // 'card' or 'line'
+      categories: []
     }
   },
   computed: {
@@ -297,6 +285,7 @@ export default {
     filteredItems() {
       let items = this.newsItems
 
+      // Apply title filter
       if (this.filters.title.trim()) {
         const query = this.filters.title.toLowerCase()
         items = items.filter(item =>
@@ -304,6 +293,7 @@ export default {
         )
       }
 
+      // Apply content filter
       if (this.filters.content.trim()) {
         const query = this.filters.content.toLowerCase()
         items = items.filter(item =>
@@ -311,10 +301,12 @@ export default {
         )
       }
 
+      // Apply date filter
       if (this.filters.date) {
         items = items.filter(item => item.date === this.filters.date)
       }
 
+      // Apply category filter
       if (this.filters.category) {
         items = items.filter(item => item.category === this.filters.category)
       }
@@ -322,12 +314,20 @@ export default {
       return items
     },
     paginatedItems() {
-      const start = (this.currentPage - 1) * this.perPage
-      const end = start + this.perPage
+      // If perPage is empty string (All), return all items
+      if (!this.perPage) {
+        return this.filteredItems
+      }
+
+      const start = (this.currentPage - 1) * Number(this.perPage)
+      const end = start + Number(this.perPage)
       return this.filteredItems.slice(start, end)
     },
     totalPages() {
-      return Math.ceil(this.filteredItems.length / this.perPage)
+      if (!this.perPage) {
+        return 1
+      }
+      return Math.ceil(this.filteredItems.length / Number(this.perPage))
     }
   },
   methods: {
@@ -336,30 +336,15 @@ export default {
       return new Date(dateString).toLocaleDateString('en-US', options)
     },
     async loadNews() {
-      this.loading = true
-      this.error = null
-
       try {
-        // Fetch all news items by setting a high limit
-        const response = await fetch('/api/news?limit=1000')
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
-        }
-
+        const response = await fetch('/src/data/news.json')
         const data = await response.json()
-
-        // API returns an array of news items directly
-        this.newsItems = Array.isArray(data) ? data : []
+        this.newsItems = data
 
         // Extract unique categories
-        this.categories = [...new Set(this.newsItems.map(item => item.category))].sort()
+        this.categories = [...new Set(data.map(item => item.category))].sort()
       } catch (error) {
         console.error('Error loading news:', error)
-        this.error = 'Failed to load news. Please try again later.'
-        this.newsItems = []
-      } finally {
-        this.loading = false
       }
     },
     clearAllFilters() {
@@ -369,13 +354,10 @@ export default {
         date: '',
         category: ''
       }
-    },
-    handlePageChange(pageNum) {
-      this.currentPage = pageNum
-      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   },
   watch: {
+    // Reset to first page when filters change
     'filters.title'() {
       this.currentPage = 1
     },

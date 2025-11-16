@@ -102,17 +102,22 @@ export default {
 
       try {
         const id = parseInt(this.$route.params.id)
-        const response = await fetch(`/api/news/${id}`)
+
+        // Fetch from local JSON file
+        const response = await fetch('/src/data/news.json')
 
         if (!response.ok) {
-          if (response.status === 404) {
-            this.newsItem = null
-            return
-          }
           throw new Error(`HTTP error! status: ${response.status}`)
         }
 
-        this.newsItem = await response.json()
+        const newsData = await response.json()
+
+        // Find the specific news item by ID
+        this.newsItem = newsData.find(item => item.id === id)
+
+        if (!this.newsItem) {
+          console.log('News item not found with ID:', id)
+        }
       } catch (error) {
         console.error('Error loading news:', error)
         this.error = 'Failed to load news item. Please try again later.'

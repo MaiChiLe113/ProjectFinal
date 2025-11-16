@@ -740,31 +740,19 @@ export default {
           }
         }
 
-        // Submit to backend
-        const response = await fetch('/api/competitions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(competitionData)
-        })
+        // Demo mode - Using local JSON files, no API calls
+        console.log('Competition data prepared (demo mode):', competitionData)
 
-        if (!response.ok) {
-          throw new Error('Failed to create competition')
-        }
+        // Show success message
+        alert('Competition created successfully! (Demo mode - data not persisted)')
 
-        alert('Competition created successfully!')
-        
         // Navigate to Hosted competitions page
         this.$router.push('/mycompetition/host')
-        
+
       } catch (error) {
         console.error('Error creating competition:', error)
         this.errors.submit = 'Failed to create competition. Please try again.'
-        alert('Competition created successfully! (Demo mode)')
-        
-        // Navigate to Hosted page even in demo mode
-        this.$router.push('/mycompetition/host')
+        alert('Error creating competition. Please check the form and try again.')
       } finally {
         this.isLoading = false
       }

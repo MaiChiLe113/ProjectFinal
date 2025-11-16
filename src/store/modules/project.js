@@ -236,38 +236,30 @@ const actions = {
     commit('SET_ERROR', null)
 
     try {
-      // Create FormData to include files
-      const formData = new FormData()
-      formData.append('projectName', state.projectData.projectName)
-      formData.append('elevatorPitch', state.projectData.elevatorPitch)
-      formData.append('aboutProject', state.projectData.aboutProject)
-      formData.append('builtWith', state.projectData.builtWith)
-      formData.append('tryItOutLinks', JSON.stringify(state.projectData.tryItOutLinks))
-      formData.append('videoDemoLink', state.projectData.videoDemoLink)
-      formData.append('category', state.projectData.category)
-      formData.append('tags', JSON.stringify(state.projectData.tags))
-      
-      if (state.projectData.thumbnail) {
-        formData.append('thumbnail', state.projectData.thumbnail)
-      }
-      
-      // Add project images
-      state.projectData.projectImages.forEach((image, index) => {
-        if (image.file) {
-          formData.append(`projectImages[${index}]`, image.file)
-        }
-      })
-
-      const response = await fetch('/api/projects', {
-        method: 'POST',
-        body: formData
-      })
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
+      // Demo mode - Using local JSON files, no API calls
+      // Prepare project data (but don't persist it)
+      const projectData = {
+        projectName: state.projectData.projectName,
+        elevatorPitch: state.projectData.elevatorPitch,
+        aboutProject: state.projectData.aboutProject,
+        builtWith: state.projectData.builtWith,
+        tryItOutLinks: state.projectData.tryItOutLinks,
+        videoDemoLink: state.projectData.videoDemoLink,
+        category: state.projectData.category,
+        tags: state.projectData.tags,
+        thumbnail: state.projectData.thumbnail ? 'uploaded' : null,
+        projectImages: state.projectData.projectImages.length
       }
 
-      const result = await response.json()
+      console.log('Project data prepared (demo mode):', projectData)
+
+      // Simulate successful save
+      const result = {
+        success: true,
+        message: 'Project saved successfully (demo mode - data not persisted)',
+        project: projectData
+      }
+
       commit('SET_LOADING', false)
       return result
     } catch (error) {

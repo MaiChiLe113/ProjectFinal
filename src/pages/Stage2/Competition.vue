@@ -596,8 +596,8 @@ export default {
       this.error = null
 
       try {
-        // Fetch all competitions by setting a high limit
-        const response = await fetch('/api/competitions?limit=1000')
+        // Fetch competitions from local JSON file
+        const response = await fetch('/src/data/competitions.json')
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
@@ -606,14 +606,14 @@ export default {
         const data = await response.json()
 
         // Debug: Log the response structure
-        console.log('API Response:', data)
+        console.log('Competitions Data:', data)
 
-        // API returns an object with competitions array
+        // JSON file returns an object with competitions array
         if (data.competitions && Array.isArray(data.competitions)) {
           this.competitions = data.competitions
           console.log('First competition structure:', this.competitions[0])
         } else if (Array.isArray(data)) {
-          // Fallback: handle if API returns array directly
+          // Fallback: handle if data is array directly
           this.competitions = data
           console.log('First competition structure:', this.competitions[0])
         } else {
