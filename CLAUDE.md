@@ -159,16 +159,6 @@ Routes defined in `src/router/index.js`:
 
 The frontend is designed to work with a backend API. The Vite dev server is configured to proxy API requests to `http://localhost:8000` (configured in `vite.config.js`).
 
-**Expected API Endpoints:**
-
-**Authentication:**
-- `POST /api/register` - Accepts `{ first_name, last_name, email, phone, password, gender, role }`, returns user object
-- `POST /api/login` - Accepts `{ email, password }`, returns user object with email, role, etc.
-
-**Projects:**
-- `POST /api/projects` - Accepts FormData with project details (name, pitch, thumbnail, images, etc.)
-- `GET /api/projects/:id` - Returns project data by ID
-
 **Current Proxy Configuration** (`vite.config.js`):
 ```js
 server: {
@@ -183,6 +173,31 @@ server: {
 
 If your backend runs on a different port, update the `target` value in `vite.config.js`.
 
+### API Response Formats
+
+The backend API returns data wrapped in objects rather than direct arrays:
+
+**Competitions:**
+- `GET /api/competitions?limit=N` - Returns `{ competitions: [...] }` (not a direct array)
+- Each competition has nested objects for `organizer`, `dates`, `capacity`, `registration`, `location`, `images`
+
+**Authentication:**
+- `POST /api/register` - Accepts `{ first_name, last_name, email, phone, password, gender, role }`, returns user object
+- `POST /api/login` - Accepts `{ email, password }`, returns user object with email, role, etc.
+
+**Projects:**
+- `POST /api/projects` - Accepts FormData with project details (name, pitch, thumbnail, images, etc.)
+- `GET /api/projects/:id` - Returns project data by ID
+
+### Data Structure Compatibility
+
+Components are built to handle **both nested (JSON) and flat (database) structures**. For example, `CompetitionCard.vue` uses helper methods to access fields like:
+- `competition.images?.banner` OR `competition.banner`
+- `competition.dates?.start` OR `competition.start_date`
+- `competition.organizer?.name` OR `competition.organizer_name`
+
+This dual compatibility allows the frontend to work with static JSON files during development and database APIs in production without code changes.
+
 ## Important Notes
 
 - Currently uses static JSON files (`src/data/`) for development when backend is unavailable
@@ -190,3 +205,18 @@ If your backend runs on a different port, update the `target` value in `vite.con
 - SignIn/SignUp components are routed (`/signin`, `/signup`) and connected to the auth module
 - Stage2 directory suggests a phased development approach - indicates work in progress
 - Some routes are commented out in the router (MyCompetition, Join, Mark, MarkCompetition), indicating incomplete features
+
+## Troubleshooting
+
+### Cards/Components Not Displaying
+
+If data from the backend API isn't displaying in components:
+
+1. **Check API response structure** - Open browser DevTools console and look for API logs showing the data structure
+2. **Verify response format** - The API should return `{ competitions: [...] }` not `[...]` directly
+3. **Check component helper methods** - Components like `CompetitionCard.vue` have defensive helper methods (e.g., `getImageUrl()`, `getStatus()`) that handle multiple field naming conventions
+4. **Add console.log** - Components already have debug logging in `loadCompetitions()` methods to inspect API responses
+
+### Content Security Policy Errors in Development
+
+CSP errors about `'unsafe-eval'` during development are expected from Vue DevTools and Vite HMR. These won't appear in production builds and don't affect functionality.
