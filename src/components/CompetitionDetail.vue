@@ -510,7 +510,7 @@ export default {
     async loadCompetition() {
       try {
         const competitionId = this.$route.params.id
-        const response = await fetch('/src/data/competitions.json')
+        const response = await fetch('/data/competitions.json')
         const data = await response.json()
         this.competition = data.competitions.find(c => c.id === parseInt(competitionId))
         

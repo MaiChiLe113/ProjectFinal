@@ -337,7 +337,7 @@ export default {
     },
     async loadNews() {
       try {
-        const response = await fetch('/src/data/news.json')
+        const response = await fetch('/data/news.json')
         const data = await response.json()
         this.newsItems = data
 

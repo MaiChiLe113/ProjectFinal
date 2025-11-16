@@ -104,7 +104,7 @@ export default {
         const id = parseInt(this.$route.params.id)
 
         // Fetch from local JSON file
-        const response = await fetch('/src/data/news.json')
+        const response = await fetch('/data/news.json')
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)

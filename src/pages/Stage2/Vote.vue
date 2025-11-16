@@ -333,7 +333,7 @@ export default {
   methods: {
     async loadCompetitions() {
       try {
-        const response = await fetch('/src/data/competitions.json')
+        const response = await fetch('/data/competitions.json')
         const data = await response.json()
         this.competitions = data.competitions
       } catch (error) {
@@ -343,7 +343,7 @@ export default {
     async loadProjects() {
       this.isLoading = true
       try {
-        const response = await fetch('/src/data/projects.json')
+        const response = await fetch('/data/projects.json')
         const data = await response.json()
         
         // Load ALL projects (no competition filter)

@@ -265,7 +265,7 @@ export default {
   methods: {
     async loadCompetition() {
       try {
-        const response = await fetch('/src/data/competitions.json')
+        const response = await fetch('/data/competitions.json')
         const data = await response.json()
         this.competition = data.competitions.find(c => c.id === this.competitionId)
       } catch (error) {
@@ -275,7 +275,7 @@ export default {
     async loadProjects() {
       this.isLoading = true
       try {
-        const response = await fetch('/src/data/projects.json')
+        const response = await fetch('/data/projects.json')
         const data = await response.json()
         
         // Filter projects by competition ID
