@@ -1,0 +1,71 @@
+[{
+  "id": 1,
+  "first_name": "Patrick",
+  "last_name": "Kliemke",
+  "email": "pkliemke0@so-net.ne.jp",
+  "password": "pass123",
+  "role": "student"
+}, {
+  "id": 2,
+  "first_name": "Bobby",
+  "last_name": "Gwatkin",
+  "email": "bgwatkin1@wikia.com",
+  "password": "pass123",
+  "role": "student"
+}, {
+  "id": 3,
+  "first_name": "Ferd",
+  "last_name": "Bonellie",
+  "email": "fbonellie2@netlog.com",
+  "password": "pass123",
+  "role": "student"
+}, {
+  "id": 4,
+  "first_name": "Maximilianus",
+  "last_name": "Cowdroy",
+  "email": "mcowdroy3@tumblr.com",
+  "password": "pass123",
+  "role": "student"
+}, {
+  "id": 5,
+  "first_name": "Ericha",
+  "last_name": "Stammer",
+  "email": "estammer4@list-manage.com",
+  "password": "pass123",
+  "role": "student"
+}, {
+  "id": 6,
+  "first_name": "Percival",
+  "last_name": "Jindra",
+  "email": "pjindra5@home.pl",
+  "password": "pass123",
+  "role": "student"
+}, {
+  "id": 7,
+  "first_name": "Errol",
+  "last_name": "Abbey",
+  "email": "eabbey6@bbc.co.uk",
+  "password": "pass123",
+  "role": "student"
+}, {
+  "id": 8,
+  "first_name": "Brok",
+  "last_name": "Peers",
+  "email": "bpeers7@nationalgeographic.com",
+  "password": "pass123",
+  "role": "student"
+}, {
+  "id": 9,
+  "first_name": "Nickola",
+  "last_name": "Pittendreigh",
+  "email": "npittendreigh8@whitehouse.gov",
+  "password": "pass123",
+  "role": "student"
+}, {
+  "id": 10,
+  "first_name": "Eleni",
+  "last_name": "Gurge",
+  "email": "egurge9@vistaprint.com",
+  "password": "pass123",
+  "role": "student"
+}]

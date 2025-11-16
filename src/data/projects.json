@@ -1,0 +1,699 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "competitionId": 1,
+      "projectName": "EcoTrack AI",
+      "elevatorPitch": "AI-powered carbon footprint tracker that helps individuals and businesses reduce their environmental impact through personalized recommendations.",
+      "aboutProject": "### Inspiration\n\nClimate change is one of the biggest challenges of our generation. We wanted to create a tool that makes it easy for everyone to understand and reduce their carbon footprint.\n\n### What it does\n\nEcoTrack AI uses machine learning to analyze daily activities, transportation choices, and consumption patterns to calculate accurate carbon emissions. It then provides personalized, actionable recommendations to reduce environmental impact.\n\n### How we built it\n\nWe used React Native for the mobile app, Python with TensorFlow for the ML models, and Firebase for backend services. The carbon calculation algorithms are based on EPA and IPCC data.\n\n### Challenges we faced\n\nGetting accurate carbon emission data across different countries was challenging. We also struggled with making the ML model work efficiently on mobile devices.\n\n### What we learned\n\nWe learned about carbon accounting, optimization techniques for mobile ML, and the importance of user-friendly design for environmental apps.",
+      "builtWith": "React Native, Python, TensorFlow, Firebase, Node.js, EPA Carbon API",
+      "tryItOutLinks": [
+        "https://github.com/ecotrack-ai/mobile-app",
+        "https://ecotrack-demo.herokuapp.com"
+      ],
+      "projectImages": [
+        {
+          "url": "https://i.pinimg.com/736x/4a/89/60/4a89609b9fa86e607ddb5eb94c8143b5.jpg",
+          "caption": "EcoTrack Dashboard"
+        },
+        {
+          "url": "https://i.pinimg.com/736x/fe/ca/2e/feca2eecb78773f7bb69b0734564d357.jpg",
+          "caption": "Carbon Footprint Analysis"
+        }
+      ],
+      "videoDemoLink": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "uploader": {
+        "id": 101,
+        "name": "Nguyen Minh Tuan",
+        "email": "tuan.nguyen@student.swin.edu.vn",
+        "avatar": "https://i.pravatar.cc/150?img=1"
+      },
+      "team": [
+        {
+          "id": 101,
+          "name": "Nguyen Minh Tuan",
+          "role": "Full-stack Developer"
+        },
+        {
+          "id": 102,
+          "name": "Tran Quynh Anh",
+          "role": "ML Engineer"
+        },
+        {
+          "id": 103,
+          "name": "Le Hoang Nam",
+          "role": "UI/UX Designer"
+        }
+      ],
+      "dates": {
+        "submitted": "2026-02-15T14:30:00Z",
+        "updated": "2026-03-01T10:15:00Z"
+      },
+      "status": "approved",
+      "votes": 245,
+      "comments": [
+        {
+          "id": 1,
+          "userId": 201,
+          "userName": "Sarah Chen",
+          "avatar": "https://i.pravatar.cc/150?img=5",
+          "comment": "This is amazing! The AI recommendations are really practical and easy to follow. Great work!",
+          "timestamp": "2026-02-16T09:20:00Z",
+          "likes": 12
+        },
+        {
+          "id": 2,
+          "userId": 202,
+          "userName": "David Pham",
+          "avatar": "https://i.pravatar.cc/150?img=12",
+          "comment": "Really impressed by the accuracy of the carbon calculations. Have you considered adding a social feature to compete with friends?",
+          "timestamp": "2026-02-18T15:45:00Z",
+          "likes": 8
+        },
+        {
+          "id": 3,
+          "userId": 203,
+          "userName": "Emily Tran",
+          "avatar": "https://i.pravatar.cc/150?img=9",
+          "comment": "The UI is beautiful and intuitive. Would love to see this integrated with smart home devices!",
+          "timestamp": "2026-02-20T11:30:00Z",
+          "likes": 15
+        }
+      ],
+      "tags": ["AI", "Sustainability", "Mobile", "Machine Learning", "Environmental"],
+      "awards": ["Best AI Innovation", "People's Choice Award"]
+    },
+    {
+      "id": 2,
+      "competitionId": 1,
+      "projectName": "MediChain",
+      "elevatorPitch": "Blockchain-based medical records system ensuring secure, transparent, and accessible healthcare data for patients and providers.",
+      "aboutProject": "### Inspiration\n\nHealthcare data is fragmented across different providers, making it difficult for patients to access their own records and for doctors to get complete medical histories.\n\n### What it does\n\nMediChain creates a decentralized medical record system where patients own their data. They can grant temporary access to healthcare providers, and all access is logged on the blockchain for transparency.\n\n### How we built it\n\nWe used Ethereum smart contracts for access control, IPFS for decentralized storage, and React for the web interface. Patient data is encrypted end-to-end.\n\n### Challenges we faced\n\nBalancing privacy with accessibility was difficult. We also had to ensure HIPAA compliance while maintaining decentralization.\n\n### What we learned\n\nWe learned about healthcare regulations, blockchain security patterns, and the importance of user education for new technologies.",
+      "builtWith": "Ethereum, Solidity, IPFS, React, Web3.js, Node.js, MongoDB",
+      "tryItOutLinks": [
+        "https://github.com/medichain/smart-contracts",
+        "https://medichain-demo.vercel.app"
+      ],
+      "projectImages": [
+        {
+          "url": "https://i.pinimg.com/736x/a7/16/18/a7161851115fea0f1c7ef4746c90bd02.jpg",
+          "caption": "MediChain Patient Dashboard"
+        },
+        {
+          "url": "https://i.pinimg.com/1200x/f4/cf/e5/f4cfe5361158ac92a94e4031b21cca3b.jpg",
+          "caption": "Access Control Interface"
+        }
+      ],
+      "videoDemoLink": "https://www.youtube.com/watch?v=medichain-demo",
+      "uploader": {
+        "id": 104,
+        "name": "Pham Duc Long",
+        "email": "long.pham@student.swin.edu.vn",
+        "avatar": "https://i.pravatar.cc/150?img=3"
+      },
+      "team": [
+        {
+          "id": 104,
+          "name": "Pham Duc Long",
+          "role": "Blockchain Developer"
+        },
+        {
+          "id": 105,
+          "name": "Vo Thanh Ha",
+          "role": "Backend Developer"
+        },
+        {
+          "id": 106,
+          "name": "Nguyen Khanh Linh",
+          "role": "Frontend Developer"
+        }
+      ],
+      "dates": {
+        "submitted": "2026-02-20T16:45:00Z",
+        "updated": "2026-03-05T13:20:00Z"
+      },
+      "status": "approved",
+      "votes": 198,
+      "comments": [
+        {
+          "id": 4,
+          "userId": 204,
+          "userName": "Michael Nguyen",
+          "avatar": "https://i.pravatar.cc/150?img=7",
+          "comment": "The security architecture is solid. How do you handle emergency access situations?",
+          "timestamp": "2026-02-21T10:15:00Z",
+          "likes": 6
+        },
+        {
+          "id": 5,
+          "userId": 205,
+          "userName": "Lisa Wang",
+          "avatar": "https://i.pravatar.cc/150?img=10",
+          "comment": "This could revolutionize healthcare! Have you talked to any hospitals about pilot programs?",
+          "timestamp": "2026-02-23T14:30:00Z",
+          "likes": 9
+        },
+        {
+          "id": 6,
+          "userId": 206,
+          "userName": "Tom Hoang",
+          "avatar": "https://i.pravatar.cc/150?img=13",
+          "comment": "Really impressed by the HIPAA compliance work. The encryption implementation looks robust.",
+          "timestamp": "2026-02-25T09:00:00Z",
+          "likes": 7
+        },
+        {
+          "id": 7,
+          "userId": 207,
+          "userName": "Rachel Kim",
+          "avatar": "https://i.pravatar.cc/150?img=15",
+          "comment": "Love the concept! Would be great to see integration with wearable devices for real-time health data.",
+          "timestamp": "2026-02-27T16:20:00Z",
+          "likes": 11
+        }
+      ],
+      "tags": ["Blockchain", "Healthcare", "Privacy", "Security", "Web3"],
+      "awards": ["Best Blockchain Solution"]
+    },
+    {
+      "id": 3,
+      "competitionId": 1,
+      "projectName": "VoiceLearn",
+      "elevatorPitch": "AI-powered language learning app that uses speech recognition and natural conversation to help users achieve fluency faster.",
+      "aboutProject": "### Inspiration\n\nTraditional language learning apps focus too much on vocabulary and grammar, but not enough on actual conversation practice. We wanted to create an AI tutor that feels like talking to a real person.\n\n### What it does\n\nVoiceLearn uses advanced speech recognition and natural language processing to have real conversations with learners. It adapts to your level, corrects pronunciation, and provides contextual feedback.\n\n### How we built it\n\nWe used OpenAI's GPT models for conversation, Google Speech API for recognition, and Flutter for cross-platform development. The adaptive learning system uses reinforcement learning.\n\n### Challenges we faced\n\nHandling different accents and speech patterns was challenging. We also had to create a curriculum that feels natural rather than scripted.\n\n### What we learned\n\nWe learned about speech processing, conversational AI design, and educational psychology principles for effective language acquisition.",
+      "builtWith": "Flutter, Python, OpenAI GPT-4, Google Cloud Speech API, Firebase, TensorFlow",
+      "tryItOutLinks": [
+        "https://github.com/voicelearn/mobile-app",
+        "https://voicelearn-demo.web.app"
+      ],
+      "projectImages": [
+        {
+          "url": "https://i.pinimg.com/736x/36/13/67/361367ef0a5bad17922f702dd467e96a.jpg",
+          "caption": "VoiceLearn Conversation Interface"
+        },
+        {
+          "url": "https://i.pinimg.com/1200x/8b/fe/12/8bfe12cd8ae512b096d78175aacea6c4.jpg",
+          "caption": "Progress Tracking Dashboard"
+        }
+      ],
+      "videoDemoLink": "https://www.youtube.com/watch?v=voicelearn-demo",
+      "uploader": {
+        "id": 107,
+        "name": "Tran Bao Ngoc",
+        "email": "ngoc.tran@student.swin.edu.vn",
+        "avatar": "https://i.pravatar.cc/150?img=4"
+      },
+      "team": [
+        {
+          "id": 107,
+          "name": "Tran Bao Ngoc",
+          "role": "AI Engineer"
+        },
+        {
+          "id": 108,
+          "name": "Le Minh Duc",
+          "role": "Mobile Developer"
+        },
+        {
+          "id": 109,
+          "name": "Hoang Thu Trang",
+          "role": "UX Designer"
+        }
+      ],
+      "dates": {
+        "submitted": "2026-03-10T11:00:00Z",
+        "updated": "2026-03-15T14:30:00Z"
+      },
+      "status": "approved",
+      "votes": 312,
+      "comments": [
+        {
+          "id": 8,
+          "userId": 208,
+          "userName": "James Lee",
+          "avatar": "https://i.pravatar.cc/150?img=11",
+          "comment": "This is incredible! I've been using it for a week and my speaking confidence has improved so much.",
+          "timestamp": "2026-03-11T15:40:00Z",
+          "likes": 18
+        },
+        {
+          "id": 9,
+          "userId": 209,
+          "userName": "Anna Pham",
+          "avatar": "https://i.pravatar.cc/150?img=14",
+          "comment": "The pronunciation feedback is so helpful. Can you add more languages?",
+          "timestamp": "2026-03-13T10:25:00Z",
+          "likes": 14
+        },
+        {
+          "id": 10,
+          "userId": 210,
+          "userName": "Kevin Tran",
+          "avatar": "https://i.pravatar.cc/150?img=8",
+          "comment": "Best language learning app I've tried. The conversations feel natural and engaging!",
+          "timestamp": "2026-03-14T16:50:00Z",
+          "likes": 22
+        }
+      ],
+      "tags": ["AI", "Education", "NLP", "Speech Recognition", "Mobile"],
+      "awards": ["Best EdTech Solution", "Most Innovative Use of AI"]
+    },
+    {
+      "id": 4,
+      "competitionId": 5,
+      "projectName": "FreshFlow",
+      "elevatorPitch": "B2B marketplace connecting local farmers directly with restaurants, reducing food waste and supporting sustainable agriculture.",
+      "aboutProject": "### Inspiration\n\nWe noticed that restaurants often struggle to source fresh, local produce, while farmers have difficulty reaching buyers. This inefficiency leads to food waste and missed opportunities.\n\n### What it does\n\nFreshFlow is a platform that connects farmers and restaurants in real-time. Farmers can list their available produce, and restaurants can place orders for same-day or next-day delivery. Our algorithm optimizes delivery routes to reduce costs.\n\n### How we built it\n\nWe built a web and mobile platform using React and React Native. The backend uses Node.js with PostgreSQL, and we implemented route optimization using Google Maps API.\n\n### Challenges we faced\n\nCoordinating logistics between multiple farmers and restaurants was complex. We also had to build trust with both sides of the marketplace.\n\n### What we learned\n\nWe learned about supply chain management, marketplace dynamics, and the importance of building relationships with users early on.",
+      "builtWith": "React, React Native, Node.js, PostgreSQL, Google Maps API, Stripe",
+      "tryItOutLinks": [
+        "https://github.com/freshflow/platform",
+        "https://freshflow.app"
+      ],
+      "projectImages": [
+        {
+          "url": "https://i.pinimg.com/1200x/a1/58/be/a158bedb7cde3727aba96a605b1cc5cc.jpg",
+          "caption": "FreshFlow Marketplace"
+        },
+        {
+          "url": "https://i.pinimg.com/736x/f8/42/9a/f8429a0e5783b6365d8f4270fa01252a.jpg",
+          "caption": "Farmer Dashboard"
+        }
+      ],
+      "videoDemoLink": "https://www.youtube.com/watch?v=freshflow-pitch",
+      "uploader": {
+        "id": 110,
+        "name": "Nguyen Thai Son",
+        "email": "son.nguyen@student.swin.edu.vn",
+        "avatar": "https://i.pravatar.cc/150?img=6"
+      },
+      "team": [
+        {
+          "id": 110,
+          "name": "Nguyen Thai Son",
+          "role": "CEO & Product"
+        },
+        {
+          "id": 111,
+          "name": "Pham Huong Giang",
+          "role": "CTO"
+        },
+        {
+          "id": 112,
+          "name": "Tran Minh Khoi",
+          "role": "Business Development"
+        },
+        {
+          "id": 113,
+          "name": "Le Phuong Thao",
+          "role": "Marketing"
+        },
+        {
+          "id": 114,
+          "name": "Vo Duc Anh",
+          "role": "Operations"
+        }
+      ],
+      "dates": {
+        "submitted": "2025-12-01T09:30:00Z",
+        "updated": "2025-12-08T11:45:00Z"
+      },
+      "status": "approved",
+      "votes": 287,
+      "comments": [
+        {
+          "id": 11,
+          "userId": 211,
+          "userName": "Chef Marco",
+          "avatar": "https://i.pravatar.cc/150?img=16",
+          "comment": "As a restaurant owner, this solves a huge pain point for me. The quality of produce is excellent!",
+          "timestamp": "2025-12-02T14:20:00Z",
+          "likes": 25
+        },
+        {
+          "id": 12,
+          "userId": 212,
+          "userName": "Farmer Tuan",
+          "avatar": "https://i.pravatar.cc/150?img=17",
+          "comment": "Finally, a platform that understands farmers' needs. The pricing is fair and transparent.",
+          "timestamp": "2025-12-03T08:15:00Z",
+          "likes": 19
+        },
+        {
+          "id": 13,
+          "userId": 213,
+          "userName": "Sarah Johnson",
+          "avatar": "https://i.pravatar.cc/150?img=18",
+          "comment": "Love the sustainability angle. Have you considered expanding to grocery stores?",
+          "timestamp": "2025-12-05T16:30:00Z",
+          "likes": 16
+        },
+        {
+          "id": 14,
+          "userId": 214,
+          "userName": "David Nguyen",
+          "avatar": "https://i.pravatar.cc/150?img=19",
+          "comment": "The route optimization is smart. What's your take rate on transactions?",
+          "timestamp": "2025-12-07T10:00:00Z",
+          "likes": 12
+        }
+      ],
+      "tags": ["Marketplace", "Sustainability", "Agriculture", "Food Tech", "B2B"],
+      "awards": ["1st Place - $5000", "Best Social Impact"]
+    },
+    {
+      "id": 5,
+      "competitionId": 5,
+      "projectName": "SkillSwap",
+      "elevatorPitch": "Peer-to-peer learning platform where students exchange skills and knowledge, creating a collaborative learning economy.",
+      "aboutProject": "### Inspiration\n\nWe noticed that students have diverse skills but limited opportunities to share them. Some students are great at coding, others at design, languages, or music. Why not create a platform to exchange these skills?\n\n### What it does\n\nSkillSwap allows students to offer skills they want to teach and request skills they want to learn. The platform matches students based on their interests and schedules, facilitating one-on-one or group learning sessions.\n\n### How we built it\n\nWe built a web app using Vue.js and a matching algorithm that considers skill levels, availability, and learning preferences. We integrated video calling for remote sessions.\n\n### Challenges we faced\n\nCreating a fair matching algorithm was difficult. We also had to ensure quality control and safety for peer-to-peer interactions.\n\n### What we learned\n\nWe learned about peer learning theory, recommendation systems, and community building strategies.",
+      "builtWith": "Vue.js, Node.js, MongoDB, WebRTC, Socket.io, AWS",
+      "tryItOutLinks": [
+        "https://github.com/skillswap/platform",
+        "https://skillswap.io"
+      ],
+      "projectImages": [
+        {
+          "url": "https://i.pinimg.com/736x/4a/89/60/4a89609b9fa86e607ddb5eb94c8143b5.jpg",
+          "caption": "SkillSwap Matching Interface"
+        },
+        {
+          "url": "https://i.pinimg.com/736x/fe/ca/2e/feca2eecb78773f7bb69b0734564d357.jpg",
+          "caption": "Learning Session Dashboard"
+        }
+      ],
+      "videoDemoLink": "https://www.youtube.com/watch?v=skillswap-demo",
+      "uploader": {
+        "id": 115,
+        "name": "Le Thuy Linh",
+        "email": "linh.le@student.swin.edu.vn",
+        "avatar": "https://i.pravatar.cc/150?img=20"
+      },
+      "team": [
+        {
+          "id": 115,
+          "name": "Le Thuy Linh",
+          "role": "Product Manager"
+        },
+        {
+          "id": 116,
+          "name": "Nguyen Hoang Long",
+          "role": "Full-stack Developer"
+        },
+        {
+          "id": 117,
+          "name": "Tran Mai Anh",
+          "role": "UI/UX Designer"
+        },
+        {
+          "id": 118,
+          "name": "Pham Quoc Bao",
+          "role": "Backend Developer"
+        },
+        {
+          "id": 119,
+          "name": "Vo Kim Ngan",
+          "role": "Community Manager"
+        }
+      ],
+      "dates": {
+        "submitted": "2025-11-28T13:15:00Z",
+        "updated": "2025-12-09T15:30:00Z"
+      },
+      "status": "approved",
+      "votes": 234,
+      "comments": [
+        {
+          "id": 15,
+          "userId": 215,
+          "userName": "Alex Tran",
+          "avatar": "https://i.pravatar.cc/150?img=21",
+          "comment": "This is brilliant! I've already learned Python from a peer and taught them photography in return.",
+          "timestamp": "2025-11-29T10:45:00Z",
+          "likes": 21
+        },
+        {
+          "id": 16,
+          "userId": 216,
+          "userName": "Emily Nguyen",
+          "avatar": "https://i.pravatar.cc/150?img=22",
+          "comment": "The matching algorithm works really well. Found a perfect language exchange partner!",
+          "timestamp": "2025-12-01T14:20:00Z",
+          "likes": 17
+        },
+        {
+          "id": 17,
+          "userId": 217,
+          "userName": "Michael Chen",
+          "avatar": "https://i.pravatar.cc/150?img=23",
+          "comment": "Great concept! How do you plan to monetize while keeping it accessible to students?",
+          "timestamp": "2025-12-04T09:30:00Z",
+          "likes": 13
+        }
+      ],
+      "tags": ["EdTech", "Peer Learning", "Community", "Marketplace", "Video Chat"],
+      "awards": ["2nd Place - $2500"]
+    },
+    {
+      "id": 6,
+      "competitionId": 7,
+      "projectName": "AlgoMaster",
+      "elevatorPitch": "Interactive algorithm visualization tool that helps students understand complex data structures and algorithms through step-by-step animations.",
+      "aboutProject": "### Inspiration\n\nMany students struggle with understanding algorithms because they can't visualize how they work. We wanted to create a tool that makes learning algorithms intuitive and engaging.\n\n### What it does\n\nAlgoMaster provides interactive visualizations for common algorithms and data structures. Users can step through executions, adjust input data, and see how different algorithms compare in performance.\n\n### How we built it\n\nWe used React with D3.js for visualizations, implemented algorithm executors in JavaScript, and added real-time performance metrics.\n\n### Challenges we faced\n\nCreating smooth animations while maintaining accuracy was challenging. We also had to balance educational value with visual appeal.\n\n### What we learned\n\nWe learned about algorithm analysis, animation techniques, and educational interface design.",
+      "builtWith": "React, D3.js, JavaScript, TypeScript, Redux, CSS3 Animations",
+      "tryItOutLinks": [
+        "https://github.com/algomaster/visualizer",
+        "https://algomaster.dev"
+      ],
+      "projectImages": [
+        {
+          "url": "https://i.pinimg.com/736x/a7/16/18/a7161851115fea0f1c7ef4746c90bd02.jpg",
+          "caption": "Sorting Algorithm Visualization"
+        }
+      ],
+      "videoDemoLink": "",
+      "uploader": {
+        "id": 120,
+        "name": "Phan Minh Duc",
+        "email": "duc.phan@student.swin.edu.vn",
+        "avatar": "https://i.pravatar.cc/150?img=24"
+      },
+      "team": [
+        {
+          "id": 120,
+          "name": "Phan Minh Duc",
+          "role": "Solo Developer"
+        }
+      ],
+      "dates": {
+        "submitted": "2025-12-06T17:30:00Z",
+        "updated": "2025-12-06T17:30:00Z"
+      },
+      "status": "approved",
+      "votes": 156,
+      "comments": [
+        {
+          "id": 18,
+          "userId": 218,
+          "userName": "Professor Nguyen",
+          "avatar": "https://i.pravatar.cc/150?img=25",
+          "comment": "Excellent educational tool! I'll be recommending this to my students.",
+          "timestamp": "2025-12-07T09:15:00Z",
+          "likes": 28
+        },
+        {
+          "id": 19,
+          "userId": 219,
+          "userName": "Student John",
+          "avatar": "https://i.pravatar.cc/150?img=26",
+          "comment": "Finally understand quicksort! The step-by-step breakdown is perfect.",
+          "timestamp": "2025-12-07T11:40:00Z",
+          "likes": 19
+        }
+      ],
+      "tags": ["Education", "Algorithms", "Visualization", "Data Structures", "Interactive"],
+      "awards": ["Best Solo Project"]
+    },
+    {
+      "id": 7,
+      "competitionId": 16,
+      "projectName": "VietGaming United",
+      "elevatorPitch": "Professional esports team competing across multiple titles with a focus on developing Vietnamese gaming talent.",
+      "aboutProject": "### About Us\n\nVietGaming United is a competitive esports organization focused on League of Legends, Valorant, and CS2. We believe in nurturing local talent and representing Vietnam on the international stage.\n\n### Our Journey\n\nStarted as a group of friends playing ranked games, we've evolved into a structured organization with dedicated coaches, analysts, and practice schedules. We've competed in various local tournaments and are now ready for the Swinburne Championship.\n\n### Team Strategy\n\nOur strength lies in our coordination and innovative strategies. We study international meta but adapt it to our unique playstyle that emphasizes aggressive early-game plays.\n\n### What Sets Us Apart\n\nWe're not just about winning - we're building a community of Vietnamese gamers who support each other and promote positive gaming culture.",
+      "builtWith": "Discord, OBS Studio, Stream Elements, VOD Review Tools",
+      "tryItOutLinks": [
+        "https://www.twitch.tv/vietgamingunited",
+        "https://discord.gg/vietgamingunited"
+      ],
+      "projectImages": [
+        {
+          "url": "https://i.pinimg.com/736x/36/13/67/361367ef0a5bad17922f702dd467e96a.jpg",
+          "caption": "Team VietGaming United"
+        },
+        {
+          "url": "https://i.pinimg.com/1200x/8b/fe/12/8bfe12cd8ae512b096d78175aacea6c4.jpg",
+          "caption": "Tournament Victory"
+        }
+      ],
+      "videoDemoLink": "https://www.youtube.com/watch?v=vgu-highlights",
+      "uploader": {
+        "id": 121,
+        "name": "Nguyen Duy Khanh",
+        "email": "khanh.nguyen@student.swin.edu.vn",
+        "avatar": "https://i.pravatar.cc/150?img=27"
+      },
+      "team": [
+        {
+          "id": 121,
+          "name": "Nguyen Duy Khanh",
+          "role": "Team Captain - Mid Laner"
+        },
+        {
+          "id": 122,
+          "name": "Tran Quang Huy",
+          "role": "ADC"
+        },
+        {
+          "id": 123,
+          "name": "Le Van Tung",
+          "role": "Support"
+        },
+        {
+          "id": 124,
+          "name": "Pham Hoang Long",
+          "role": "Jungler"
+        },
+        {
+          "id": 125,
+          "name": "Vo Minh Tam",
+          "role": "Top Laner"
+        }
+      ],
+      "dates": {
+        "submitted": "2025-12-02T20:00:00Z",
+        "updated": "2025-12-10T18:30:00Z"
+      },
+      "status": "approved",
+      "votes": 342,
+      "comments": [
+        {
+          "id": 20,
+          "userId": 220,
+          "userName": "EsportsEnthusiast",
+          "avatar": "https://i.pravatar.cc/150?img=28",
+          "comment": "Best team coordination I've seen in the VN scene! GL in the tournament!",
+          "timestamp": "2025-12-03T12:30:00Z",
+          "likes": 45
+        },
+        {
+          "id": 21,
+          "userId": 221,
+          "userName": "GamingFan99",
+          "avatar": "https://i.pravatar.cc/150?img=29",
+          "comment": "Your macro play is insane. Hoping to see you guys in finals!",
+          "timestamp": "2025-12-05T15:20:00Z",
+          "likes": 38
+        },
+        {
+          "id": 22,
+          "userId": 222,
+          "userName": "Coach Minh",
+          "avatar": "https://i.pravatar.cc/150?img=30",
+          "comment": "Great shot-calling and team synergy. Your draft phase is particularly impressive.",
+          "timestamp": "2025-12-08T10:45:00Z",
+          "likes": 41
+        }
+      ],
+      "tags": ["Esports", "League of Legends", "Valorant", "CS2", "Competitive Gaming"],
+      "awards": []
+    },
+    {
+      "id": 8,
+      "competitionId": 16,
+      "projectName": "Phoenix Rising",
+      "elevatorPitch": "Competitive Valorant team known for innovative strategies and aggressive playstyle, aiming to dominate the Swinburne Championship.",
+      "aboutProject": "### Team Overview\n\nPhoenix Rising is a Valorant-focused esports team that has been competing for 8 months. We pride ourselves on our aggressive entry strategies and map control.\n\n### Our Approach\n\nWe emphasize constant practice, VOD reviews, and strategic innovation. Each player specializes in specific agents but maintains flexibility to adapt to different team compositions.\n\n### Achievements\n\nWe've won 3 local tournaments and placed top 4 in regional qualifiers. Our win rate in scrims is 72%.\n\n### Tournament Goals\n\nWe're targeting first place in the Valorant category and plan to use unconventional agent picks to catch opponents off-guard.",
+      "builtWith": "Discord, Valorant, OBS, Stream Labs, Tracker.gg",
+      "tryItOutLinks": [
+        "https://www.twitch.tv/phoenixrising",
+        "https://tracker.gg/valorant/profile/phoenixrising"
+      ],
+      "projectImages": [
+        {
+          "url": "https://i.pinimg.com/736x/4a/89/60/4a89609b9fa86e607ddb5eb94c8143b5.jpg",
+          "caption": "Phoenix Rising Team Photo"
+        }
+      ],
+      "videoDemoLink": "https://www.youtube.com/watch?v=phoenix-ace",
+      "uploader": {
+        "id": 126,
+        "name": "Tran Anh Tu",
+        "email": "tu.tran@student.swin.edu.vn",
+        "avatar": "https://i.pravatar.cc/150?img=31"
+      },
+      "team": [
+        {
+          "id": 126,
+          "name": "Tran Anh Tu",
+          "role": "IGL - Controller"
+        },
+        {
+          "id": 127,
+          "name": "Nguyen Thai Binh",
+          "role": "Duelist"
+        },
+        {
+          "id": 128,
+          "name": "Le Quoc Hung",
+          "role": "Sentinel"
+        },
+        {
+          "id": 129,
+          "name": "Pham Duy Kien",
+          "role": "Initiator"
+        },
+        {
+          "id": 130,
+          "name": "Hoang Minh Tri",
+          "role": "Flex"
+        }
+      ],
+      "dates": {
+        "submitted": "2025-11-30T14:20:00Z",
+        "updated": "2025-12-11T16:00:00Z"
+      },
+      "status": "approved",
+      "votes": 289,
+      "comments": [
+        {
+          "id": 23,
+          "userId": 223,
+          "userName": "ValorantPro",
+          "avatar": "https://i.pravatar.cc/150?img=32",
+          "comment": "Your Ascent defense is unbreakable! What's your secret?",
+          "timestamp": "2025-12-01T09:30:00Z",
+          "likes": 34
+        },
+        {
+          "id": 24,
+          "userId": 224,
+          "userName": "TacticalGenius",
+          "avatar": "https://i.pravatar.cc/150?img=33",
+          "comment": "Love the aggressive style. Your entry fragging is clean!",
+          "timestamp": "2025-12-04T13:15:00Z",
+          "likes": 29
+        },
+        {
+          "id": 25,
+          "userId": 225,
+          "userName": "EsportsCoach",
+          "avatar": "https://i.pravatar.cc/150?img=34",
+          "comment": "Solid utility usage and team coordination. You guys have potential for pro scene.",
+          "timestamp": "2025-12-09T11:00:00Z",
+          "likes": 37
+        }
+      ],
+      "tags": ["Esports", "Valorant", "FPS", "Competitive", "Strategy"],
+      "awards": ["Best Valorant Team"]
+    }
+  ]
+}
