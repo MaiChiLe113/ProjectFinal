@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2025 at 08:47 AM
+-- Generation Time: Nov 16, 2025 at 11:28 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -175,9 +175,17 @@ CREATE TABLE `competition_gallery` (
   `id` int(11) NOT NULL,
   `competition_id` int(11) NOT NULL,
   `url` varchar(500) NOT NULL,
-  `caption` varchar(255) DEFAULT NULL,
-  `display_order` int(11) NOT NULL DEFAULT 0
+  `caption` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `competition_gallery`
+--
+
+INSERT INTO `competition_gallery` (`id`, `competition_id`, `url`, `caption`) VALUES
+(1, 1, 'https://i.pinimg.com/736x/5d/2a/e5/5d2ae59e3ebd0c245c7dad1125eb0fd7.jpg', 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\r\n\r\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.'),
+(2, 1, 'https://i.pinimg.com/736x/5d/2a/e5/5d2ae59e3ebd0c245c7dad1125eb0fd7.jpg', 'Sed ante. Vivamus tortor. Duis mattis egestas metus.\r\n\r\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.'),
+(3, 1, 'https://i.pinimg.com/736x/5d/2a/e5/5d2ae59e3ebd0c245c7dad1125eb0fd7.jpg', 'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\r\n\r\nIn congue. Etiam justo. Etiam pretium iaculis justo.\r\n\r\nIn hac habitasse pla');
 
 -- --------------------------------------------------------
 
@@ -209,23 +217,92 @@ INSERT INTO `competition_participants` (`id`, `competition_id`, `user_id`, `join
 
 CREATE TABLE `news` (
   `id` int(11) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `date` date DEFAULT NULL,
   `title` varchar(255) NOT NULL,
-  `content` text NOT NULL,
-  `category` varchar(100) NOT NULL,
-  `image` varchar(500) DEFAULT NULL,
-  `publish_date` date NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `content` text DEFAULT NULL,
+  `category` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `news`
 --
 
-INSERT INTO `news` (`id`, `title`, `content`, `category`, `image`, `publish_date`, `created_at`, `updated_at`) VALUES
-(1, 'Annual Coding Competition Announced', 'Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl.', 'Workshop', 'https://i.pinimg.com/736x/34/45/7f/34457f7c2e3bee32d7d2b8768932533a.jpg', '2025-04-06', '2025-11-16 04:03:01', '2025-11-16 04:03:01'),
-(2, 'New Partnership with Tech Giants', 'Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna.', 'Competition', 'https://i.pinimg.com/1200x/db/37/c6/db37c6ca4272904d262bb69c472015fb.jpg', '2025-06-23', '2025-11-16 04:03:01', '2025-11-16 04:03:01'),
-(3, 'Hackathon 2024 Winners Revealed', 'Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus.', 'Results', 'https://i.pinimg.com/736x/fb/df/2c/fbdf2c19057b6c4d33c9e90955a6184f.jpg', '2025-02-04', '2025-11-16 04:03:01', '2025-11-16 04:03:01');
+INSERT INTO `news` (`id`, `image`, `date`, `title`, `content`, `category`) VALUES
+(1, 'https://i.pinimg.com/736x/13/50/2d/13502dfd688966737d608cf45d4c79d7.jpg', '2025-04-06', 'Annual Coding Competition Announced', 'Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl.', 'Workshop'),
+(2, 'https://i.pinimg.com/1200x/95/98/ea/9598ea91027906d3873b0bf6d40fd3c7.jpg', '2025-06-23', 'New Partnership with Tech Giants', 'Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna.', 'Competition'),
+(3, 'https://i.pinimg.com/736x/37/05/9b/37059bbbf5d9060b1984dcbc5ef3b810.jpg', '2025-02-04', 'Hackathon 2024 Winners Revealed', 'Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti.', 'Results'),
+(4, 'https://i.pinimg.com/736x/95/85/38/95853855f02ebb4a32ccc7ef0a5b13e1.jpg', '2025-05-19', 'Design Competition Extended Deadline', 'Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.', 'Competition'),
+(5, 'https://i.pinimg.com/1200x/aa/c6/81/aac681c78d3d537c497139af349d99b7.jpg', '2025-09-04', 'Workshop: Introduction to Machine Learning', 'Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.', 'Workshop'),
+(6, 'https://i.pinimg.com/736x/5d/2a/e5/5d2ae59e3ebd0c245c7dad1125eb0fd7.jpg', '2025-09-30', 'Platform Update: New Features Released', 'Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', 'Update'),
+(7, 'http://dummyimage.com/x.png/dddddd/000000', '2025-03-25', 'Data Science Challenge Begins', 'Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum.', 'Competition'),
+(8, 'http://dummyimage.com/x.png/ff4444/ffffff', '2025-10-14', 'Success Story: Alumni Spotlight', 'Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', 'Results'),
+(9, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-06-07', 'Mobile App Development Contest', 'Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.', 'Workshop'),
+(10, 'http://dummyimage.com/x.png/dddddd/000000', '2025-05-12', 'Cybersecurity Awareness Month', 'Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.', 'Competition'),
+(11, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-03-23', 'New Mentor Program Launched', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', 'Workshop'),
+(12, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-07-26', 'Web Development Bootcamp Registration', 'Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.', 'Update'),
+(13, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-07-30', 'Community Meetup This Weekend', 'Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum.', 'Partnership'),
+(14, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-02-09', 'Game Development Jam Announced', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.', 'Program'),
+(15, 'http://dummyimage.com/x.png/ff4444/ffffff', '2025-06-27', 'Scholarship Opportunities Available', 'Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo.', 'Program'),
+(16, 'http://dummyimage.com/x.png/dddddd/000000', '2024-12-04', 'Platform Maintenance Scheduled', 'Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus.', 'Update'),
+(17, 'http://dummyimage.com/x.png/dddddd/000000', '2024-12-18', 'Interview Preparation Workshop', 'Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.', 'Opportunity'),
+(18, 'http://dummyimage.com/x.png/dddddd/000000', '2025-06-13', 'Open Source Contribution Drive', 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 'Results'),
+(19, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-04-07', 'ΑΙ Workshop Series Begins', 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum.', 'Results'),
+(20, 'http://dummyimage.com/x.png/ff4444/ffffff', '2025-02-26', 'Cloud Computing Competition', 'Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.', 'Program'),
+(21, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-04-25', 'Frontend Development Masterclass', 'Duis mattis egestas metus. Aenean fermentum.', 'Update'),
+(22, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-01-05', 'Backend Development Challenge', 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.', 'Results'),
+(23, 'http://dummyimage.com/x.png/dddddd/000000', '2025-11-06', 'Full Stack Developer Summit', 'Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.', 'Program'),
+(24, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-01-16', 'Tech Talk: Future of Web Development', 'Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat.', 'Event'),
+(25, 'http://dummyimage.com/x.png/ff4444/ffffff', '2025-10-18', 'Student Projects Showcase', 'Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui.', 'Success Story'),
+(26, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-06-11', 'Career Fair Registration Open', 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.', 'Workshop'),
+(27, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-09-02', 'Networking Event Next Month', 'Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.', 'Workshop'),
+(28, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-09-22', 'Advanced React Workshop', 'Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.', 'Update'),
+(29, 'http://dummyimage.com/x.png/ff4444/ffffff', '2024-12-20', 'Python Programming Bootcamp', 'Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.', 'Partnership'),
+(30, 'http://dummyimage.com/x.png/ff4444/ffffff', '2025-08-14', 'Database Design Competition', 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.', 'Success Story'),
+(31, 'http://dummyimage.com/x.png/dddddd/000000', '2025-07-19', 'DevOps Best Practices Seminar', 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', 'Opportunity'),
+(32, 'http://dummyimage.com/x.png/ff4444/ffffff', '2025-04-03', 'Agile Development Workshop', 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.', 'Partnership'),
+(33, 'http://dummyimage.com/x.png/dddddd/000000', '2025-10-23', 'Code Review Best Practices', 'Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.', 'Workshop'),
+(34, 'http://dummyimage.com/x.png/dddddd/000000', '2025-05-10', 'Git and GitHub Masterclass', 'Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.', 'Partnership'),
+(35, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-06-24', 'API Development Workshop', 'Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.', 'Results'),
+(36, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-02-24', 'Microservices Architecture Talk', 'Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis.', 'Results'),
+(37, 'http://dummyimage.com/x.png/dddddd/000000', '2025-02-28', 'Testing Strategies Workshop', 'Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', 'Competition'),
+(38, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-01-03', 'Performance Optimization Seminar', 'Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.', 'Partnership'),
+(39, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-03-15', 'Security Best Practices Event', 'Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.', 'Competition'),
+(40, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-08-27', 'UI/UX Design Principles', 'Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum.', 'Competition'),
+(41, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-04-24', 'Mobile First Design Workshop', 'Vivamus tortor. Duis mattis egestas. metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo.', 'Results'),
+(42, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-10-12', 'Accessibility in Web Development', 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.', 'Results'),
+(43, 'http://dummyimage.com/x.png/cc0000/ffffff', '2024-12-19', 'Progressive Web Apps Workshop', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo.', 'Success Story'),
+(44, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-03-10', 'GraphQL Introduction Session', 'Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.', 'Partnership'),
+(45, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2024-11-17', 'Docker and Containers Workshop', 'Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.', 'Event'),
+(46, 'http://dummyimage.com/x.png/dddddd/000000', '2025-01-27', 'Kubernetes Fundamentals', 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui.', 'Partnership'),
+(47, 'http://dummyimage.com/x.png/ff4444/ffffff', '2025-01-28', 'CI/CD Pipeline Workshop', 'Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo.', 'Update'),
+(48, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-06-26', 'Tech Industry Panel Discussion', 'Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl.', 'Competition'),
+(49, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-06-14', 'Startup Pitch Competition', 'Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.', 'Results'),
+(50, 'http://dummyimage.com/x.png/dddddd/000000', '2024-12-03', 'Innovation Challenge Announced', 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.', 'Event'),
+(51, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-08-11', 'Blockchain Technology Seminar', 'Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', 'Competition'),
+(52, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-04-08', 'Quantum Computing Introduction', 'Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.', 'Event'),
+(53, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-11-03', 'Virtual Reality Development Workshop', 'Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus.', 'Workshop'),
+(54, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-05-26', 'Augmented Reality Applications', 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.', 'Opportunity'),
+(55, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-09-29', 'Internet of Things Projects', 'Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.', 'Competition'),
+(56, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-09-25', '5G Technology Overview', 'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', 'Success Story'),
+(57, 'http://dummyimage.com/x.png/ff4444/ffffff', '2025-03-06', 'Software Architecture Patterns', 'Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.', 'Results'),
+(58, 'http://dummyimage.com/x.png/dddddd/000000', '2025-01-18', 'Microservices vs Monoliths Debate', 'Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.', 'Results'),
+(59, 'http://dummyimage.com/x.png/ff4444/ffffff', '2025-04-25', 'Serverless Computing Workshop', 'Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum.', 'Event'),
+(60, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-06-17', 'Edge Computing Fundamentals', 'Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.', 'Results'),
+(61, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-09-24', 'Neural Networks Deep Dive', 'Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.', 'Results'),
+(62, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-04-06', 'Natural Language Processing Tutorial', 'Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.', 'Competition'),
+(63, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-05-30', 'Computer Vision Applications', 'Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.', 'Partnership'),
+(64, 'http://dummyimage.com/x.png/ff4444/ffffff', '2024-12-26', 'Reinforcement Learning Workshop', 'Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.', 'Event'),
+(65, 'http://dummyimage.com/x.png/cc0000/ffffff', '2024-12-17', 'Deep Learning Bootcamp', 'Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum.', 'Workshop'),
+(66, 'http://dummyimage.com/x.png/cc0000/ffffff', '2024-12-03', 'TensorFlow Masterclass', 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.', 'Program'),
+(67, 'http://dummyimage.com/x.png/5fa2dd/ffffff', '2025-03-23', 'PyTorch Programming Guide', 'Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis.', 'Partnership'),
+(68, 'http://dummyimage.com/x.png/dddddd/000000', '2025-02-16', 'MLOps Best Practices', 'Fusce consequat. Nulla nisl.', 'Event'),
+(69, 'http://dummyimage.com/x.png/dddddd/000000', '2025-08-28', 'Data Engineering Pipeline', 'Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.', 'Success Story'),
+(70, 'http://dummyimage.com/x.png/dddddd/000000', '2025-03-06', 'Big Data Analytics Workshop', 'Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat.', 'Results'),
+(71, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-01-15', 'Apache Spark Tutorial', 'Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', 'Program'),
+(72, 'http://dummyimage.com/x.png/dddddd/000000', '2025-05-30', 'Hadoop Ecosystem Overview', 'Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.', 'Opportunity'),
+(73, 'http://dummyimage.com/x.png/cc0000/ffffff', '2024-11-14', 'NoSQL Databases Comparison', 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.', 'Update'),
+(74, 'http://dummyimage.com/x.png/cc0000/ffffff', '2025-07-03', 'PostgreSQL Advanced Features', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.', 'Workshop');
 
 -- --------------------------------------------------------
 
@@ -409,7 +486,7 @@ CREATE TABLE `v_competitions_full` (
 ,`organizer_id` int(11)
 ,`organizer_name` varchar(255)
 ,`organizer_email` varchar(255)
-,`organizer_type` enum('staff','faculty','individual')
+,`organizer_type` enum('staff','faculty','individual','clubs')
 ,`created_date` date
 ,`start_date` date
 ,`end_date` date
@@ -423,7 +500,7 @@ CREATE TABLE `v_competitions_full` (
 ,`requires_approval` tinyint(1)
 ,`allow_teams` tinyint(1)
 ,`team_size` int(11)
-,`location_type` enum('online','onsite','hybrid')
+,`location_type` enum('online','onsite','hybrid','offline')
 ,`venue` varchar(255)
 ,`location_link` varchar(500)
 ,`prizes` text
@@ -496,7 +573,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- Indexes for dumped tables
 --
 
-
 --
 -- Indexes for table `competitions`
 --
@@ -528,9 +604,7 @@ ALTER TABLE `competition_participants`
 -- Indexes for table `news`
 --
 ALTER TABLE `news`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idx_category` (`category`),
-  ADD KEY `idx_publish_date` (`publish_date`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `projects`
@@ -595,20 +669,16 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for dumped tables
 --
 
-
+--
 -- AUTO_INCREMENT for table `competitions`
 --
 ALTER TABLE `competitions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
+--
 -- AUTO_INCREMENT for table `competition_gallery`
 --
 ALTER TABLE `competition_gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
--- AUTO_INCREMENT for table `news`
---
-ALTER TABLE `news`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
