@@ -224,7 +224,7 @@ export default {
         // Get current user's ID (this would come from your auth system)
         const currentUserId = 101 // Mock user ID
         
-        const response = await fetch('/data/projects.json')
+        const response = await fetch('./data/projects.json')
         const data = await response.json()
         
         // Find project submitted by current user for this competition

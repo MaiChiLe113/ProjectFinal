@@ -288,7 +288,7 @@ export default {
       try {
         // In a real app, this would fetch from an API filtered by current user
         // For now, we'll load from competitions.json and filter by organizer
-        const response = await fetch('/data/competitions.json')
+        const response = await fetch('./data/competitions.json')
         const data = await response.json()
         
         // TODO: Replace with actual user ID from authentication

@@ -425,7 +425,7 @@ export default {
     async loadProject() {
       try {
         const projectId = this.$route.params.id
-        const response = await fetch('/data/projects.json')
+        const response = await fetch('./data/projects.json')
         const data = await response.json()
         this.project = data.projects.find(p => p.id === parseInt(projectId))
 

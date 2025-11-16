@@ -597,7 +597,7 @@ export default {
 
       try {
         // Fetch competitions from local JSON file
-        const response = await fetch('/data/competitions.json')
+        const response = await fetch('./data/competitions.json')
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
