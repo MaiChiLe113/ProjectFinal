@@ -51,7 +51,7 @@
       </div>
     </div>
     <router-link
-    href="/signup"
+    to="/competitions"
     class="btn btn-outline-primary btn-lg d-flex align-items-center justify-content-between"
     style="max-width: 400px; margin-top: 30px;"
     >
