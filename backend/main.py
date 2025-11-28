@@ -2,14 +2,12 @@
 # Basic API endpoints for frontend integration
 # Run with: uvicorn main:app --reload
 
-from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, Form
+from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, List
 import mysql.connector
 from mysql.connector import Error
-import os
-from datetime import datetime
 import json
 
 app = FastAPI(title="ComSwin API")
@@ -32,9 +30,10 @@ def get_db_connection():
     try:
         connection = mysql.connector.connect(
             host='localhost',
+            port=8889,        # MAMP MySQL port
             database='swincom',
-            user='root',      # Default XAMPP MySQL user
-            password=''       # Default XAMPP MySQL password 
+            user='root',      # Default MAMP MySQL user
+            password='root'   # Default MAMP MySQL password
         )
         return connection
     except Error as e:
@@ -229,8 +228,7 @@ async def get_competitions(
             "rules": comp["rules"],
             "contactEmail": comp["contact_email"],
             "images": {
-                "banner": comp["banner_image"],
-                "thumbnail": comp["thumbnail_image"]
+                "banner": comp["banner_image"]
             },
             "metadata": {
                 "views": comp["views"],
@@ -294,8 +292,7 @@ async def get_competition(competition_id: int):
         "rules": comp["rules"],
         "contactEmail": comp["contact_email"],
         "images": {
-            "banner": comp["banner_image"],
-            "thumbnail": comp["thumbnail_image"]
+            "banner": comp["banner_image"]
         },
         "metadata": {
             "views": comp["views"],
@@ -304,6 +301,138 @@ async def get_competition(competition_id: int):
             "completionRate": float(comp["completion_rate"])
         }
     }
+
+@app.post("/api/competitions")
+async def create_competition(
+    title: str = Form(...),
+    description: str = Form(...),
+    category: str = Form(...),
+    organizer_id: int = Form(...),
+    organizer_name: str = Form(...),
+    organizer_email: str = Form(...),
+    organizer_type: str = Form(...),
+    start_date: str = Form(...),
+    end_date: str = Form(...),
+    registration_deadline: str = Form(...),
+    participants: str = Form(...),
+    max_capacity: int = Form(...),
+    location_type: str = Form(...),
+    venue: str = Form(...),
+    location_link: Optional[str] = Form(None),
+    allow_teams: bool = Form(...),
+    team_size: Optional[int] = Form(None),
+    requires_approval: bool = Form(...),
+    prizes: str = Form(...),
+    rules: str = Form(...),
+    contact_email: str = Form(...),
+    banner_image: Optional[str] = Form(None)
+):
+    """Create a new competition"""
+    from datetime import date
+
+    # Insert competition
+    query = """
+        INSERT INTO competitions (
+            title, description, category,
+            organizer_id, organizer_name, organizer_email, organizer_type,
+            created_date, start_date, end_date, registration_deadline,
+            participants, max_capacity, current_capacity, waitlist,
+            status, registration_is_open, requires_approval, allow_teams, team_size,
+            location_type, venue, location_link,
+            prizes, rules, contact_email,
+            banner_image
+        ) VALUES (
+            %s, %s, %s,
+            %s, %s, %s, %s,
+            %s, %s, %s, %s,
+            %s, %s, %s, %s,
+            %s, %s, %s, %s, %s,
+            %s, %s, %s,
+            %s, %s, %s,
+            %s
+        )
+    """
+
+    competition_id = execute_query(
+        query,
+        (
+            title, description, category,
+            organizer_id, organizer_name, organizer_email, organizer_type,
+            str(date.today()), start_date, end_date, registration_deadline,
+            participants, max_capacity, 0, 0,
+            'upcoming', True, requires_approval, allow_teams, team_size,
+            location_type, venue, location_link,
+            prizes, rules, contact_email,
+            banner_image
+        ),
+        commit=True
+    )
+
+    return {
+        "status": "success",
+        "message": "Competition created successfully",
+        "competition_id": competition_id
+    }
+
+@app.get("/api/competitions/my-hosted")
+async def get_my_hosted_competitions(organizer_id: int):
+    """Get competitions hosted by a specific organizer"""
+    query = "SELECT * FROM v_competitions_full WHERE organizer_id = %s ORDER BY created_date DESC"
+    competitions = execute_query(query, (organizer_id,), fetch_all=True)
+
+    # Build nested structure like frontend expects
+    result = []
+    for comp in competitions:
+        result.append({
+            "id": comp["id"],
+            "title": comp["title"],
+            "description": comp["description"],
+            "category": comp["category"],
+            "organizer": {
+                "id": comp["organizer_id"],
+                "name": comp["organizer_name"],
+                "email": comp["organizer_email"],
+                "type": comp["organizer_type"]
+            },
+            "dates": {
+                "created": str(comp["created_date"]),
+                "start": str(comp["start_date"]),
+                "end": str(comp["end_date"]),
+                "registrationDeadline": str(comp["registration_deadline"])
+            },
+            "participants": comp["participants"],
+            "capacity": {
+                "max": comp["max_capacity"],
+                "current": comp["current_capacity"],
+                "waitlist": comp["waitlist"]
+            },
+            "status": comp["status"],
+            "registration": {
+                "isOpen": bool(comp["registration_is_open"]),
+                "requiresApproval": bool(comp["requires_approval"]),
+                "allowTeams": bool(comp["allow_teams"]),
+                "teamSize": comp["team_size"]
+            },
+            "location": {
+                "type": comp["location_type"],
+                "venue": comp["venue"],
+                "link": comp["location_link"]
+            },
+            "prizes": comp["prizes"],
+            "rules": comp["rules"],
+            "contactEmail": comp["contact_email"],
+            "images": {
+                "banner": comp["banner_image"]
+            },
+            "metadata": {
+                "views": comp["views"],
+                "votes": comp["votes"],
+                "registrations": comp["actual_registrations"],
+                "completionRate": float(comp["completion_rate"])
+            }
+        })
+
+    return {"competitions": result}
 
 @app.post("/api/competitions/{competition_id}/join")
 async def join_competition(competition_id: int, user_id: int):

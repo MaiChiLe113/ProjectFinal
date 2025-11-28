@@ -382,7 +382,7 @@
               <i class="bi bi-arrow-counterclockwise me-2"></i>Clear Filters
             </button>
           </div>
-        </div>
+        </div> 
         <div
           v-for="competition in paginatedCompetitions"
           :key="competition.id"

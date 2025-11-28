@@ -169,108 +169,11 @@ export default {
   },
   data() {
     return {
-      hostedCompetitions: [
-        {
-        id: 101,
-        title: "AI Art Generator Challenge",
-        description: "Create stunning AI-generated artwork using any AI tool. Show us your creativity and technical skills!",
-        category: "Technology",
-        organizer: {
-          id: 999,
-          name: "Alex Chen",
-          email: "alex.chen@example.com",
-          type: "individual"
-        },
-        dates: {
-          start: "2026-04-10",
-          end: "2026-04-25",
-          registrationDeadline: "2026-04-08"
-        },
-        participants: "Open to all",
-        capacity: {
-          max: 50,
-          current: 28,
-          waitlist: 0
-        },
-        status: "ongoing",
-        registration: {
-          isOpen: true,
-          allowTeams: false,
-          teamSize: 1,
-          requiresApproval: false
-        },
-        location: {
-          type: "online",
-          venue: "Discord Server",
-          link: "https://discord.gg/example"
-        },
-        prizes: "1st: $500, 2nd: $300, 3rd: $150",
-        rules: "Use any AI tool, Submit original work only, Follow community guidelines",
-        contactEmail: "aiart@example.com",
-        images: {
-          banner: "https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=800",
-          thumbnail: "https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=400"
-        },
-        metadata: {
-          views: 342,
-          votes: 0,
-          registrations: 28,
-          completionRate: 0
-        }
-      },
-      {
-        id: 102,
-        title: "Mobile Photography Contest",
-        description: "Capture the beauty of everyday life using only your smartphone camera. Best photos win amazing prizes!",
-        category: "Media",
-        organizer: {
-          id: 999,
-          name: "Sarah Johnson",
-          email: "sarah.j@example.com",
-          type: "individual"
-        },
-        dates: {
-          start: "2026-03-20",
-          end: "2026-04-15",
-          registrationDeadline: "2026-03-18"
-        },
-        participants: "Photography enthusiasts worldwide",
-        capacity: {
-          max: 100,
-          current: 67,
-          waitlist: 5
-        },
-        status: "upcoming",
-        registration: {
-          isOpen: true,
-          allowTeams: false,
-          teamSize: 1,
-          requiresApproval: false
-        },
-        location: {
-          type: "online",
-          venue: "Instagram & Website Submission",
-          link: "https://photochallenge.example.com"
-        },
-        prizes: "1st: $1000 + Featured Exhibition, 2nd: $500, 3rd: $250, People's Choice: $200",
-        rules: "Smartphone photos only, No heavy editing, Original work required, Max 3 submissions per person",
-        contactEmail: "photo.contest@example.com",
-        images: {
-          banner: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800",
-          thumbnail: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=400"
-        },
-        metadata: {
-          views: 1256,
-          votes: 0,
-          registrations: 67,
-          completionRate: 0
-        }
-      }
-    ],
-    isLoading: true,
-    selectedCompetitionId: null
-  }
-},
+      hostedCompetitions: [],
+      isLoading: true,
+      selectedCompetitionId: null
+    }
+  },
   computed: {
     activeCompetitions() {
       return this.hostedCompetitions.filter(c => c.status === 'ongoing' || c.status === 'upcoming').length
@@ -286,22 +189,33 @@ export default {
     async loadHostedCompetitions() {
       this.isLoading = true
       try {
-        // In a real app, this would fetch from an API filtered by current user
-        // For now, we'll load from competitions.json and filter by organizer
-        const response = await fetch('/src/data/competitions.json')
+        // Get current user from Vuex store
+        const currentUser = this.$store.getters['auth/currentUser']
+
+        if (!currentUser) {
+          console.log('No user logged in')
+          this.hostedCompetitions = []
+          this.isLoading = false
+          return
+        }
+
+        // Fetch competitions hosted by current user from backend
+        const response = await fetch(`/api/competitions/my-hosted?organizer_id=${currentUser.id}`)
+
+        if (!response.ok) {
+          throw new Error('Failed to load hosted competitions')
+        }
+
         const data = await response.json()
-        
-        // TODO: Replace with actual user ID from authentication
-        const currentUserId = 101 // Mock user ID
-        
-        // Filter competitions where current user is the organizer
-        this.hostedCompetitions = data.competitions.filter(c => 
-          c.organizer?.id === currentUserId || 
-          c.organizer?.email === 'organizer@example.com' // Mock filter
-        )
-        
+
+        // The API returns { competitions: [...] }
+        this.hostedCompetitions = data.competitions || []
+
+        console.log('Loaded hosted competitions:', this.hostedCompetitions)
+
       } catch (error) {
         console.error('Error loading competitions:', error)
+        this.hostedCompetitions = []
       } finally {
         this.isLoading = false
       }

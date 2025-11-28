@@ -417,34 +417,7 @@
                   </div>
                 </div>
 
-                <!-- Thumbnail Image URL -->
-                <div class="mb-4">
-                  <label for="thumbnail" class="form-label fw-bold">
-                    Thumbnail Image URL
-                  </label>
-                  <input 
-                    type="url" 
-                    id="thumbnail"
-                    class="form-control form-control-lg"
-                    v-model="formData.images.thumbnail"
-                    @input="validateImageUrl('thumbnail')"
-                    placeholder="https://example.com/thumbnail.jpg">
-                  
-                  <!-- Image Preview -->
-                  <div v-if="formData.images.thumbnail && isValidImageUrl.thumbnail" class="mt-3">
-                    <p class="text-muted small mb-2">Preview:</p>
-                    <div class="image-preview-container thumbnail">
-                      <img 
-                        :src="formData.images.thumbnail" 
-                        alt="Thumbnail Preview"
-                        class="img-thumbnail"
-                        @error="handleImageError('thumbnail')">
-                    </div>
-                  </div>
-                  <div v-if="formData.images.thumbnail && !isValidImageUrl.thumbnail" class="text-danger small mt-1">
-                    Failed to load image. Please check the URL.
-                  </div>
-                </div>
+                <!-- Thumbnail removed - using banner for all displays -->
               </div>
             </div>
 
@@ -541,14 +514,12 @@ export default {
         prizes: '',
         rules: '',
         images: {
-          banner: '',
-          thumbnail: ''
+          banner: ''
         },
         contactEmail: ''
       },
       isValidImageUrl: {
-        banner: true,
-        thumbnail: true
+        banner: true
       },
       errors: {},
       isLoading: false,
@@ -583,8 +554,7 @@ export default {
         prizes: '1st Prize: $2000 + Trophy\n2nd Prize: $1000 + Certificate\n3rd Prize: $500 + Certificate\nBest Innovation Award: $300',
         rules: '1. Teams must consist of 2-4 members\n2. All team members must be currently enrolled students\n3. Projects must be original work\n4. Final submissions due by March 16, 11:59 PM\n5. Presentations will be held on March 17\n6. Judging criteria: Innovation (40%), Feasibility (30%), Presentation (30%)',
         images: {
-          banner: 'https://i.pinimg.com/736x/a7/16/18/a7161851115fea0f1c7ef4746c90bd02.jpg',
-          thumbnail: 'https://i.pinimg.com/736x/a7/16/18/a7161851115fea0f1c7ef4746c90bd02.jpg'
+          banner: 'https://i.pinimg.com/736x/a7/16/18/a7161851115fea0f1c7ef4746c90bd02.jpg'
         },
         contactEmail: 'innovationchallenge@swinburne.edu.vn'
       }
@@ -607,7 +577,6 @@ export default {
       
       // Reset image validation
       this.isValidImageUrl.banner = true
-      this.isValidImageUrl.thumbnail = true
       
       // Show success message
       alert('Form auto-filled with sample data! Feel free to edit before submitting.')
@@ -709,62 +678,85 @@ export default {
         return
       }
 
+      // Check if user is logged in
+      const currentUser = this.$store.getters['auth/currentUser']
+      if (!currentUser) {
+        alert('You must be logged in to create a competition')
+        this.$router.push('/signin')
+        return
+      }
+
       this.isLoading = true
 
       try {
-        // Prepare data for submission
-        const competitionData = {
-          title: this.formData.title,
-          description: this.formData.description,
-          category: this.formData.category,
-          organizer: this.formData.organizer,
-          dates: this.formData.dates,
-          participants: this.formData.participants,
-          capacity: {
-            max: this.formData.capacity.max,
-            current: 0,
-            waitlist: 0
-          },
-          status: 'upcoming',
-          registration: this.formData.registration,
-          location: this.formData.location,
-          prizes: this.formData.prizes,
-          rules: this.formData.rules,
-          contactEmail: this.formData.contactEmail,
-          images: this.formData.images,
-          metadata: {
-            views: 0,
-            votes: 0,
-            registrations: 0,
-            completionRate: 0
-          }
+        // Prepare FormData for submission
+        const formData = new FormData()
+
+        // Basic info
+        formData.append('title', this.formData.title)
+        formData.append('description', this.formData.description)
+        formData.append('category', this.formData.category)
+
+        // Organizer info (from current user)
+        formData.append('organizer_id', currentUser.id)
+        formData.append('organizer_name', this.formData.organizer.name)
+        formData.append('organizer_email', this.formData.organizer.email)
+        formData.append('organizer_type', this.formData.organizer.type)
+
+        // Dates
+        formData.append('start_date', this.formData.dates.start)
+        formData.append('end_date', this.formData.dates.end)
+        formData.append('registration_deadline', this.formData.dates.registrationDeadline)
+
+        // Participants and capacity
+        formData.append('participants', this.formData.participants)
+        formData.append('max_capacity', this.formData.capacity.max)
+
+        // Location
+        formData.append('location_type', this.formData.location.type)
+        formData.append('venue', this.formData.location.venue)
+        if (this.formData.location.link) {
+          formData.append('location_link', this.formData.location.link)
+        }
+
+        // Registration settings
+        formData.append('allow_teams', this.formData.registration.allowTeams)
+        if (this.formData.registration.allowTeams && this.formData.registration.teamSize) {
+          formData.append('team_size', this.formData.registration.teamSize)
+        }
+        formData.append('requires_approval', this.formData.registration.requiresApproval)
+
+        // Prizes and rules
+        formData.append('prizes', this.formData.prizes)
+        formData.append('rules', this.formData.rules)
+        formData.append('contact_email', this.formData.contactEmail)
+
+        // Images
+        if (this.formData.images.banner) {
+          formData.append('banner_image', this.formData.images.banner)
         }
 
         // Submit to backend
         const response = await fetch('/api/competitions', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(competitionData)
+          body: formData
         })
 
+        const result = await response.json()
+
         if (!response.ok) {
-          throw new Error('Failed to create competition')
+          throw new Error(result.detail || 'Failed to create competition')
         }
 
         alert('Competition created successfully!')
-        
+
         // Navigate to Hosted competitions page
         this.$router.push('/mycompetition/host')
-        
+
       } catch (error) {
         console.error('Error creating competition:', error)
-        this.errors.submit = 'Failed to create competition. Please try again.'
-        alert('Competition created successfully! (Demo mode)')
-        
-        // Navigate to Hosted page even in demo mode
-        this.$router.push('/mycompetition/host')
+        this.errors.submit = error.message || 'Failed to create competition. Please try again.'
+        alert(`Failed to create competition: ${error.message}`)
       } finally {
         this.isLoading = false
       }

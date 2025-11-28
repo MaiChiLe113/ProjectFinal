@@ -45,13 +45,14 @@ Starts FastAPI backend at http://localhost:8000 with auto-reload
 
 ### Full Stack Development Workflow
 
-1. Start XAMPP and ensure MySQL is running
+1. Start MAMP and ensure MySQL is running (port 8889)
 2. Open two terminal windows:
    - Terminal 1: `cd backend && uvicorn main:app --reload`
    - Terminal 2: `npm run dev`
 3. Access frontend at http://localhost:5173
 4. Backend API available at http://localhost:8000
 5. API documentation at http://localhost:8000/docs (FastAPI auto-generated)
+6. MAMP Web interface at http://localhost:8888 (optional)
 
 ## Architecture
 
@@ -140,9 +141,10 @@ const competitions = await competitionsAPI.getAll({ limit: 10 })
 - `src/data/users.json` - User accounts with roles (student/staff) and plaintext passwords (dev only)
 - `src/data/projects.json` - Submitted projects with detailed information (name, pitch, about, built-with, links, images, uploader, votes)
 
-**Backend Database**: Production data managed by FastAPI backend with MySQL database (XAMPP)
+**Backend Database**: Production data managed by FastAPI backend with MySQL database (MAMP)
 - Database name: `swincom`
-- Default XAMPP credentials: user `root`, password empty
+- Default MAMP credentials: user `root`, password `root`
+- MySQL runs on port 8889 (default MAMP configuration)
 - Connection configured in `backend/main.py`
 
 ### Routing Structure
@@ -213,7 +215,7 @@ Routes defined in `src/router/index.js`:
 **Backend Framework**: FastAPI (Python)
 - Located in `backend/` directory
 - Main entry: `backend/main.py`
-- Database: MySQL via XAMPP
+- Database: MySQL via MAMP (port 8889)
 - CORS enabled for frontend at `http://localhost:5173`
 
 **Frontend-Backend Communication**:
@@ -291,7 +293,7 @@ This dual compatibility allows the frontend to work with static JSON files durin
 ### Development Environment
 
 - **Dual Data Sources**: App can work with static JSON files (`src/data/`) when backend is unavailable OR with FastAPI backend
-- **Database Setup**: Requires XAMPP with MySQL database named `swincom`, default credentials (user: `root`, password: empty)
+- **Database Setup**: Requires MAMP with MySQL database named `swincom`, default credentials (user: `root`, password: `root`), port: 8889
 - **CORS**: Backend configured to accept requests from `http://localhost:5173` only
 - **Auth Storage**: Uses localStorage key `swincom_user` for session persistence, `auth_token` for JWT tokens
 
@@ -317,8 +319,8 @@ This dual compatibility allows the frontend to work with static JSON files durin
 If frontend cannot connect to backend:
 
 1. **Check backend is running** - Verify `uvicorn main:app --reload` is running in `backend/` directory
-2. **Verify MySQL is running** - Start XAMPP and ensure MySQL service is active
-3. **Check database exists** - Database `swincom` must exist in MySQL
+2. **Verify MySQL is running** - Start MAMP and ensure MySQL service is active on port 8889
+3. **Check database exists** - Database `swincom` must exist in MySQL (accessible via MAMP's phpMyAdmin at http://localhost:8888/phpMyAdmin)
 4. **Test health endpoint** - Visit `http://localhost:8000/api/health` directly
 5. **Check proxy configuration** - Ensure `vite.config.js` proxy target matches backend port (default: 8000)
 

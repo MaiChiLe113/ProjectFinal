@@ -300,9 +300,8 @@ export default {
     },
     async loadCompetitions() {
       try {
-        const response = await fetch('/src/data/competitions.json')
+        const response = await fetch('/api/competitions?limit=10')
         const data = await response.json()
-        // Get first 3 competitions for carousel
         this.featuredCompetitions = data.competitions.slice(0, 3)
       } catch (error) {
         console.error('Error loading competitions:', error)

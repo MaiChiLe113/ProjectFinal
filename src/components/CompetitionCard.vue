@@ -103,21 +103,12 @@ export default {
       if (this.competition.images?.banner) {
         return this.competition.images.banner
       }
-      if (this.competition.images?.thumbnail) {
-        return this.competition.images.thumbnail
-      }
       // Try flat structure (from database)
       if (this.competition.banner) {
         return this.competition.banner
       }
-      if (this.competition.thumbnail) {
-        return this.competition.thumbnail
-      }
       if (this.competition.banner_image) {
         return this.competition.banner_image
-      }
-      if (this.competition.thumbnail_image) {
-        return this.competition.thumbnail_image
       }
       // Fallback to placeholder
       return 'https://via.placeholder.com/400x200?text=Competition'
