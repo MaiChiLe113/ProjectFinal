@@ -266,6 +266,7 @@
 <script>
 import NewsCard from '../components/NewsCard.vue'
 import Paginate from 'vuejs-paginate-next'
+import { newsAPI } from '@/services/api';
 
 export default {
   name: 'News',
@@ -341,13 +342,7 @@ export default {
 
       try {
         // Fetch all news items by setting a high limit
-        const response = await fetch('/api/news?limit=1000')
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
-        }
-
-        const data = await response.json()
+        const data = await newsAPI.getAll({ limit: 1000 })
 
         // API returns an array of news items directly
         this.newsItems = Array.isArray(data) ? data : []

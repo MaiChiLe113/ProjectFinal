@@ -487,6 +487,7 @@
 
 <script>
 import CompetitionCard from '../../components/CompetitionCard.vue'
+import { competitionsAPI } from '@/services/api';
 
 export default {
   name: 'Competition',
@@ -596,14 +597,7 @@ export default {
       this.error = null
 
       try {
-        // Fetch all competitions by setting a high limit
-        const response = await fetch('/api/competitions?limit=1000')
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
-        }
-
-        const data = await response.json()
+        const data = await competitionsAPI.getAll({ limit: 1000 })
 
         // Debug: Log the response structure
         console.log('API Response:', data)

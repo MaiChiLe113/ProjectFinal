@@ -479,6 +479,8 @@
 </template>
 
 <script>
+import { competitionsAPI } from '@/services/api';
+
 export default {
   name: 'Host',
   data() {
@@ -737,16 +739,7 @@ export default {
         }
 
         // Submit to backend
-        const response = await fetch('/api/competitions', {
-          method: 'POST',
-          body: formData
-        })
-
-        const result = await response.json()
-
-        if (!response.ok) {
-          throw new Error(result.detail || 'Failed to create competition')
-        }
+        await competitionsAPI.create(formData)
 
         alert('Competition created successfully!')
 

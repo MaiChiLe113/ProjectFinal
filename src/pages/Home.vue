@@ -282,6 +282,7 @@
 <script>
 import router from '../router';
 import CompetitionCard from '../components/CompetitionCard.vue';
+import { competitionsAPI } from '@/services/api';
 
 export default {
   name: 'Home',
@@ -300,8 +301,7 @@ export default {
     },
     async loadCompetitions() {
       try {
-        const response = await fetch('/api/competitions?limit=10')
-        const data = await response.json()
+        const data = await competitionsAPI.getAll({ limit: 10 })
         this.featuredCompetitions = data.competitions.slice(0, 3)
       } catch (error) {
         console.error('Error loading competitions:', error)

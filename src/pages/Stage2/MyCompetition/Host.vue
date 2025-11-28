@@ -161,6 +161,7 @@
 
 <script>
 import CompetitionCard from '../../../components/CompetitionCard.vue'
+import { competitionsAPI } from '@/services/api';
 
 export default {
   name: 'Host',
@@ -199,14 +200,8 @@ export default {
           return
         }
 
-        // Fetch competitions hosted by current user from backend
-        const response = await fetch(`/api/competitions/my-hosted?organizer_id=${currentUser.id}`)
-
-        if (!response.ok) {
-          throw new Error('Failed to load hosted competitions')
-        }
-
-        const data = await response.json()
+          // Fetch competitions hosted by current user from backend
+        const data = await competitionsAPI.getMyHosted(currentUser.id)
 
         // The API returns { competitions: [...] }
         this.hostedCompetitions = data.competitions || []
@@ -260,24 +255,18 @@ export default {
       if (!this.selectedCompetitionId) return
       
       try {
-        // In a real app, this would call an API to delete the competition
-        const response = await fetch(`/api/competitions/${this.selectedCompetitionId}`, {
-          method: 'DELETE'
-        })
-        
-        if (!response.ok) {
-          throw new Error('Failed to delete competition')
-        }
-        
+        // Delete competition via API
+        await competitionsAPI.delete(this.selectedCompetitionId)
+
         // Remove from local list
         this.hostedCompetitions = this.hostedCompetitions.filter(
           c => c.id !== this.selectedCompetitionId
         )
-        
+
         // Close modal
         const modal = bootstrap.Modal.getInstance(this.$refs.deleteModal)
         modal.hide()
-        
+
         alert('Competition deleted successfully!')
       } catch (error) {
         console.error('Error deleting competition:', error)

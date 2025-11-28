@@ -94,12 +94,25 @@ export const competitionsAPI = {
     return api.get(`/competitions/${id}`);
   },
 
+  getMyHosted: (organizerId) => {
+    return api.get('/competitions/my-hosted', { params: { organizer_id: organizerId } });
+  },
+
   join: (competitionId, userId) => {
     return api.post(`/competitions/${competitionId}/join`, { user_id: userId });
   },
 
   create: (competitionData) => {
-    return api.post('/competitions', competitionData);
+    // Support both FormData and regular objects
+    const headers = competitionData instanceof FormData
+      ? { 'Content-Type': 'multipart/form-data' }
+      : {};
+
+    return api.post('/competitions', competitionData, { headers });
+  },
+
+  delete: (competitionId) => {
+    return api.delete(`/competitions/${competitionId}`);
   },
 };
 
